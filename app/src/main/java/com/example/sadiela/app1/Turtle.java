@@ -14,6 +14,15 @@ public class Turtle {
     List<String> tags = new ArrayList<String>();
 
     //String imagePath;
+    Turtle (String ident, String nm, String spcs){
+        ID = ident;
+        name = nm;
+        species = spcs;
+    }
+
+    public String toString() {
+        return ID + " " + name + " " + species;
+    }
 }
 
 //yagni

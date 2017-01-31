@@ -52,19 +52,12 @@ public class MainActivity extends AppCompatActivity {
         startActivity(new Intent(this, LogNewData.class));
     }
 
+    public void switchTurtleBrowse(View v) {startActivity(new Intent(this, BrowseTurtles.class));}
+
     public void switchExistingLogActivity(View v) {
         startActivity(new Intent(this, BrowseTurtles.class));
     }
 
 
 
-    public void doAnotherThing(View v) {
-        Button b = (Button) v;
-        TextView tv = (TextView)findViewById(R.id.statusMessage);
-        if (tv.getText().equals("heyyyyy")) {
-            tv.setText("hi");
-        } else {
-            tv.setText("heyyyyy");
-        }
-    }
 }
