@@ -16,7 +16,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".LogData" />
-        <activity android:name=".LogExistingData"></activity>
+        <activity android:name=".LogExistingData" />
+        <activity android:name=".BrowseTurtles"></activity>
     </application>
 
 </manifest>

@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void switchExistingLogActivity(View v) {
-        startActivity(new Intent(this, LogExistingData.class));
+        startActivity(new Intent(this, BrowseTurtles.class));
     }
 
 

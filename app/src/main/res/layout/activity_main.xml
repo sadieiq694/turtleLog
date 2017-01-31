@@ -23,29 +23,16 @@
             android:layout_height="wrap_content"
             android:text="Log New Turtle"
             android:id="@+id/button2"
-            android:onClick="switchLogActivity" />
+            android:onClick="switchLogActivity"
+            android:layout_gravity="center_horizontal" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TextChange"
-            android:id="@+id/button"
-            android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true"
-            android:onClick="doAnotherThing" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="27dp"
-            android:text="hi"
-            android:id="@+id/statusMessage" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Log Tagged Turtle"
+            android:text="See Existing Turtles"
             android:id="@+id/button3"
-            android:onClick="switchExistingLogActivity" />
+            android:onClick="switchTurtleBrowse"
+            android:layout_gravity="center_horizontal" />
 
     </LinearLayout>
 </RelativeLayout>

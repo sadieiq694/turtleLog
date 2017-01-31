@@ -1,14 +1,18 @@
+package com.example.sadiela.app1;
+
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
  * Created by sadie.la on 1/30/2017.
  */
-public class Turtle {
-    String name;
+public class Capture {
+    String captureID; //researchers will not have to fill this in
+    Date date; // " "
     List<String> tags = new ArrayList<String>();
+    int catchNum;
     String location;
-    //String imagePath;
     double strCLMin;
     double strCLnt;
     double strCW;
@@ -22,5 +26,3 @@ public class Turtle {
     double bodyD;
 
 }
-
-//yagni
