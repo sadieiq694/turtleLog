@@ -15,9 +15,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LogData" />
-        <activity android:name=".LogExistingData" />
-        <activity android:name=".BrowseTurtles"></activity>
+        <activity android:name=".BrowseTurtles">
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH"/>
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

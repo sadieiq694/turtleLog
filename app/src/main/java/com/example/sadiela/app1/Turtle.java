@@ -21,8 +21,9 @@ public class Turtle {
     }
 
     public String toString() {
-        return ID + " " + name + " " + species;
+        return ID + " " + name;
     }
+
 }
 
 //yagni
