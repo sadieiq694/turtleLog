@@ -3,11 +3,14 @@ package com.example.sadiela.app1;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.ListView;
@@ -28,25 +31,49 @@ public class BrowseTurtles extends AppCompatActivity {
         existingTurtles.add(new Turtle("4", "Frances", "C. mydas"));
         existingTurtles.add(new Turtle("5", "Felicia", "C. mydas"));
 
-        ArrayAdapter<Turtle> adapter = new ArrayAdapter<Turtle>(this, R.layout.turtle_search, existingTurtles);
+        ArrayAdapter<Turtle> adapter = new ArrayAdapter<Turtle>(this, R.layout.turtle_search2, existingTurtles);
         ListView listView = (ListView) findViewById(R.id.turtleList);
         listView.setAdapter(adapter);
 
         ArrayList<String> turtleStrings = searchStrings(existingTurtles);
-        ArrayAdapter<String> searchAdapter = new ArrayAdapter<String>(this, R.layout.turtle_search, turtleStrings);
-        AutoCompleteTextView searchView = (AutoCompleteTextView) findViewById(R.id.autocomplete_turtle);
-        searchView.setAdapter(searchAdapter);
+        ArrayAdapter<String> searchAdapter = new ArrayAdapter<String>(this, R.layout.turtle_search2, turtleStrings);
+        //AutoCompleteTextView searchView = (AutoCompleteTextView) findViewById(R.id.autocomplete_turtle);
+        // searchView.setAdapter(searchAdapter);
 
-        Intent intent = getIntent();
+        /*Intent intent = getIntent();
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String query = intent.getStringExtra(SearchManager.QUERY);
             doMySearch(query);
-        }
+        }*/
     }
 
-    public void doMySearch(String q) {
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
 
+        searchView.setOnQueryTextListener(
+                new SearchView.OnQueryTextListener() {
+                    @Override
+                    public boolean onQueryTextChange(String newText) {
+                        Log.d("Searching", newText);
+                        return false;
+                    }
+                    @Override
+                    public boolean onQueryTextSubmit(String query) {
+                        Log.d("Submit", query);
+                        return false;
+                    }
+                //NEW FUNCTION: GIVEN A PARTIAL SEARCH STRING, RETURN OPTIONS
+
+                }
+        );
+        return true;
     }
+
+
 
     public ArrayList<String> searchStrings (ArrayList<Turtle> turtles) {
         ArrayList<String> turtleStr= new ArrayList<String>();
