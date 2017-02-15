@@ -54,16 +54,27 @@ public class BrowseTurtles extends AppCompatActivity {
         MenuItem searchItem = menu.findItem(R.id.action_search);
         SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
 
+        //final ArrayAdapter<Turtle> adapter = new ArrayAdapter<Turtle>(this, R.layout.turtle_search2, existingTurtles);
+        //ListView listView = (ListView) findViewById(R.id.turtleList);
+        //listView.setAdapter(adapter);
+        final BrowseTurtles browseActivity = this;
+
         searchView.setOnQueryTextListener(
                 new SearchView.OnQueryTextListener() {
                     @Override
                     public boolean onQueryTextChange(String newText) {
                         Log.d("Searching", newText);
+                        ArrayAdapter<String> partialList = new ArrayAdapter<String>(browseActivity, R.layout.turtle_search2, partialSearchOptions(newText));
+                        ListView listView = (ListView) findViewById(R.id.turtleList);
+                        listView.setAdapter(partialList);
                         return false;
                     }
                     @Override
                     public boolean onQueryTextSubmit(String query) {
                         Log.d("Submit", query);
+                        ArrayAdapter<String> finalList = new ArrayAdapter<String>(browseActivity, R.layout.turtle_search2, partialSearchOptions(query));
+                        ListView listView = (ListView) findViewById(R.id.turtleList);
+                        listView.setAdapter(finalList);
                         return false;
                     }
                 //NEW FUNCTION: GIVEN A PARTIAL SEARCH STRING, RETURN OPTIONS
@@ -73,6 +84,15 @@ public class BrowseTurtles extends AppCompatActivity {
         return true;
     }
 
+    public ArrayList<String> partialSearchOptions(String text) {
+        ArrayList<String> matchingTurtles = new ArrayList<String>();
+        for(Turtle t : existingTurtles){
+            if(t.toString().contains(text)) {
+                matchingTurtles.add(t.toString());
+            }
+        }
+        return matchingTurtles;
+    }
 
 
     public ArrayList<String> searchStrings (ArrayList<Turtle> turtles) {
