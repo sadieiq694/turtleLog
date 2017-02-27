@@ -106,8 +106,8 @@ public class LogNewData extends AppCompatActivity {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_carapace_datalog, container, false);
-            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
+            View rootView = inflater.inflate(R.layout.fragment_carapace_data, container, false);
+            TextView textView = (TextView) rootView.findViewById(R.id.carapace_string);
             textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
             return rootView;
         }
@@ -142,7 +142,7 @@ public class LogNewData extends AppCompatActivity {
                 case 0:
                     return "SECTION 1";
                 case 1:
-                    return "SECTION 2";
+                    return "Carapace Data";
                 case 2:
                     return "SECTION 3";
             }
