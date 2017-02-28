@@ -1,5 +1,6 @@
 package com.example.sadiela.app1;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -106,10 +107,25 @@ public class LogNewData extends AppCompatActivity {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_carapace_data, container, false);
-            TextView textView = (TextView) rootView.findViewById(R.id.carapace_string);
-            textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
-            return rootView;
+            int tabNumber = getArguments().getInt(ARG_SECTION_NUMBER);
+            switch (tabNumber) {
+                case 1:
+                    View rootView1 = inflater.inflate(R.layout.fragment_capture_data, container, false);
+                // date, catchnum, location (captureID)
+                return rootView1;
+                case 2:
+                // strCLmin, strCLnt, strCW, curCLmin, curCLnt, curCW
+                    View rootView2 = inflater.inflate(R.layout.fragment_carapace_data, container, false);
+                    return rootView2;
+                case 3:
+                // headW, headL, headD, weight, bodyD
+                    View rootView3 = inflater.inflate(R.layout.fragment_other_data, container, false);
+                    return rootView3;
+            }
+            View rootViewDefault = inflater.inflate(R.layout.fragment_capture_data, container, false);
+            return rootViewDefault;
+            //textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
+            //return rootView;
         }
     }
 
@@ -140,13 +156,29 @@ public class LogNewData extends AppCompatActivity {
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "SECTION 1";
+                    return "Capture Data";
+                    // date, catchnum, location (captureID)
                 case 1:
                     return "Carapace Data";
+                    // strCLmin, strCLnt, strCW, curCLmin, curCLnt, curCW
                 case 2:
-                    return "SECTION 3";
+                    return "Other Data";
+                    // headW, headL, headD, weight, bodyD
             }
             return null;
         }
+
+    /*    public enterData(stuff) {
+            // Gets the data repository in write mode
+            SQLiteDatabase db = mDbHelper.getWritableDatabase();
+
+        // Create a new map of values, where column names are the keys
+        ContentValues values = new ContentValues();
+        values.put(FeedEntry.COLUMN_NAME_TITLE, title);
+        values.put(FeedEntry.COLUMN_NAME_SUBTITLE, subtitle);
+
+        // Insert the new row, returning the primary key value of the new row
+        long newRowId = db.insert(FeedEntry.TABLE_NAME, null, values);
+        }*/
     }
 }

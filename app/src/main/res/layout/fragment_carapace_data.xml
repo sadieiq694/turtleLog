@@ -11,5 +11,13 @@
         android:text="@string/carapace_string"
         android:id="@+id/carapace_string" />
 
+    <EditText
+        android:layout_width="105dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/enterStrCLMin"
+        android:layout_gravity="center"
+        android:background="#b1d1ff"
+        android:typeface="sans" />
+
 
 </FrameLayout>
