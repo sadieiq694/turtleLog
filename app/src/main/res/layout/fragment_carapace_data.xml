@@ -12,7 +12,7 @@
         android:id="@+id/carapace_string" />
 
     <EditText
-        android:layout_width="105dp"
+        android:layout_width="264dp"
         android:layout_height="wrap_content"
         android:id="@+id/enterStrCLMin"
         android:inputType="number"
@@ -21,6 +21,16 @@
         android:layout_gravity="center"
         android:background="#b1d1ff"
         android:typeface="sans" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/moreCarMeas"
+        android:hint="Curved Carapace Length Min"
+        android:background="#b1d1ff"
+        android:layout_gravity="center_horizontal|bottom" />
 
 
 </FrameLayout>

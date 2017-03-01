@@ -171,7 +171,7 @@ public class LogNewData extends AppCompatActivity {
         }
 
 
-        public void enterData(View v) {
+        /*public void enterData(View v) {
 
             // get EditText by id
             (EditText) inputTxt = (EditText) findViewById(R.id.input);

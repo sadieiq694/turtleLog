@@ -4,11 +4,13 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -65,12 +67,39 @@ public class CarapaceData extends Fragment {
         }
     }
 
+    private EditText strCarMin;
+    public void buttonOnClick(View v) {
+        Button button = (Button) v;
+        strCarMin = (EditText) getActivity().findViewById(R.id.enterStrCLMin);
+
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         EditText editText = (EditText) getActivity().findViewById(R.id.enterStrCLMin);
-        editText.setOnEditorActionListener(new TextView.OnEditorActionListener())
+
+        editText.setOnEditorActionListener(new TextView.OnEditorActionListener()
+        {
+            @Override
+            public boolean onEditorAction(TextView view, int actionId, KeyEvent event) {
+                int result = actionId & EditorInfo.IME_MASK_ACTION;
+                boolean handled = false;
+                switch(result) {
+                    case EditorInfo.IME_ACTION_DONE:
+                        // done stuff
+                        Log.d("Action", "Done");
+                        break;
+                    case EditorInfo.IME_ACTION_NEXT:
+                        // next stuff
+                        Log.d("Action", "Next");
+                        break;
+                }
+                return handled;
+            }
+        });
+
         return inflater.inflate(R.layout.fragment_carapace_data, container, false);
     }
 
