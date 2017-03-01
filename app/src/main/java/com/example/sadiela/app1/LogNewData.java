@@ -1,5 +1,6 @@
 package com.example.sadiela.app1;
 
+import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -18,6 +19,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.widget.EditText;
 import android.widget.TextView;
 
 public class LogNewData extends AppCompatActivity {
@@ -168,7 +170,14 @@ public class LogNewData extends AppCompatActivity {
             return null;
         }
 
-    /*    public enterData(stuff) {
+
+        public void enterData(View v) {
+
+            // get EditText by id
+            (EditText) inputTxt = (EditText) findViewById(R.id.input);
+
+            // Store EditText in Variable
+            String str = inputTxt.getText().toString();
             // Gets the data repository in write mode
             SQLiteDatabase db = mDbHelper.getWritableDatabase();
 
