@@ -15,7 +15,7 @@
         android:layout_width="264dp"
         android:layout_height="wrap_content"
         android:id="@+id/enterStrCLMin"
-        android:inputType="number"
+        android:inputType="text"
         android:imeOptions="actionNext"
         android:hint="Straight Carapace Length Min"
         android:layout_gravity="center"

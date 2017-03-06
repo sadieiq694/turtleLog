@@ -4,27 +4,20 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.EditorInfo;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
 
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link CarapaceData.OnFragmentInteractionListener} interface
+ * {@link CaptureData.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link CarapaceData#newInstance} factory method to
+ * Use the {@link CaptureData#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class CarapaceData extends Fragment {
+public class CaptureData extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -36,7 +29,7 @@ public class CarapaceData extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public CarapaceData() {
+    public CaptureData() {
         // Required empty public constructor
     }
 
@@ -46,11 +39,11 @@ public class CarapaceData extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment CarapaceData.
+     * @return A new instance of fragment CaptureData.
      */
     // TODO: Rename and change types and number of parameters
-    public static CarapaceData newInstance(String param1, String param2) {
-        CarapaceData fragment = new CarapaceData();
+    public static CaptureData newInstance(String param1, String param2) {
+        CaptureData fragment = new CaptureData();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -67,22 +60,12 @@ public class CarapaceData extends Fragment {
         }
     }
 
-    private EditText strCarMin;
-    public void buttonOnClick(View v) {
-        Button button = (Button) v;
-        strCarMin = (EditText) getActivity().findViewById(R.id.enterStrCLMin);
-
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Log.d("Function", "Started");
         // Inflate the layout for this fragment
-
-        return inflater.inflate(R.layout.fragment_carapace_data, container, false);
+        return inflater.inflate(R.layout.fragment_capture_data2, container, false);
     }
-
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
@@ -90,7 +73,6 @@ public class CarapaceData extends Fragment {
             mListener.onFragmentInteraction(uri);
         }
     }
-
 
     @Override
     public void onAttach(Context context) {

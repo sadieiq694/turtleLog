@@ -13,12 +13,15 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -112,19 +115,41 @@ public class LogNewData extends AppCompatActivity {
             int tabNumber = getArguments().getInt(ARG_SECTION_NUMBER);
             switch (tabNumber) {
                 case 1:
-                    View rootView1 = inflater.inflate(R.layout.fragment_capture_data, container, false);
+                    View rootView1 = inflater.inflate(R.layout.fragment_capture_data2, container, false);
                 // date, catchnum, location (captureID)
                 return rootView1;
                 case 2:
                 // strCLmin, strCLnt, strCW, curCLmin, curCLnt, curCW
                     View rootView2 = inflater.inflate(R.layout.fragment_carapace_data, container, false);
+                    EditText editText = (EditText) rootView2.findViewById(R.id.enterStrCLMin);
+                    editText.setOnEditorActionListener(new TextView.OnEditorActionListener()
+                    {
+                        @Override
+                        public boolean onEditorAction(TextView view, int actionId, KeyEvent event) {
+                            Log.d("Function", "Start");
+                            int result = actionId & EditorInfo.IME_MASK_ACTION;
+                            Log.d("Result", String.valueOf(result));
+                            boolean handled = false;
+                            switch(result) {
+                                case EditorInfo.IME_ACTION_DONE:
+                                    // done stuff
+                                    Log.d("Action", "Done");
+                                    break;
+                                case EditorInfo.IME_ACTION_NEXT:
+                                    // next stuff
+                                    Log.d("Action", "Next");
+                                    break;
+                            }
+                            return handled;
+                        }
+                    });
                     return rootView2;
                 case 3:
                 // headW, headL, headD, weight, bodyD
-                    View rootView3 = inflater.inflate(R.layout.fragment_other_data, container, false);
+                    View rootView3 = inflater.inflate(R.layout.fragment_other_data2, container, false);
                     return rootView3;
             }
-            View rootViewDefault = inflater.inflate(R.layout.fragment_capture_data, container, false);
+            View rootViewDefault = inflater.inflate(R.layout.fragment_capture_data2, container, false);
             return rootViewDefault;
             //textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
             //return rootView;
@@ -145,7 +170,15 @@ public class LogNewData extends AppCompatActivity {
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
-            return PlaceholderFragment.newInstance(position + 1);
+            switch(position) {
+                case 0:
+                    return CaptureData.newInstance("","");
+                case 1:
+                    return CarapaceData.newInstance("", "");
+                case 2:
+                    return OtherData.newInstance("","");
+            }
+            throw new IndexOutOfBoundsException("case number");
         }
 
         @Override
