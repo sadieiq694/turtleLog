@@ -2,6 +2,7 @@ package com.example.sadiela.app1;
 
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -25,8 +26,9 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class LogNewData extends AppCompatActivity {
+public class LogNewData extends AppCompatActivity implements CaptureData.OnFragmentInteractionListener {
 
+    private Turtle t = new Turtle();
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
      * fragments for each of the sections. We use a
@@ -84,77 +86,125 @@ public class LogNewData extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
+    }
+
     /**
      * A placeholder fragment containing a simple view.
      */
-    public static class PlaceholderFragment extends Fragment {
-        /**
-         * The fragment argument representing the section number for this
-         * fragment.
-         */
-        private static final String ARG_SECTION_NUMBER = "section_number";
-
-        public PlaceholderFragment() {
-        }
-
-        /**
-         * Returns a new instance of this fragment for the given section
-         * number.
-         */
-        public static PlaceholderFragment newInstance(int sectionNumber) {
-            PlaceholderFragment fragment = new PlaceholderFragment();
-            Bundle args = new Bundle();
-            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-            fragment.setArguments(args);
-            return fragment;
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            int tabNumber = getArguments().getInt(ARG_SECTION_NUMBER);
-            switch (tabNumber) {
-                case 1:
-                    View rootView1 = inflater.inflate(R.layout.fragment_capture_data2, container, false);
-                // date, catchnum, location (captureID)
-                return rootView1;
-                case 2:
-                // strCLmin, strCLnt, strCW, curCLmin, curCLnt, curCW
-                    View rootView2 = inflater.inflate(R.layout.fragment_carapace_data, container, false);
-                    EditText editText = (EditText) rootView2.findViewById(R.id.enterStrCLMin);
-                    editText.setOnEditorActionListener(new TextView.OnEditorActionListener()
-                    {
-                        @Override
-                        public boolean onEditorAction(TextView view, int actionId, KeyEvent event) {
-                            Log.d("Function", "Start");
-                            int result = actionId & EditorInfo.IME_MASK_ACTION;
-                            Log.d("Result", String.valueOf(result));
-                            boolean handled = false;
-                            switch(result) {
-                                case EditorInfo.IME_ACTION_DONE:
-                                    // done stuff
-                                    Log.d("Action", "Done");
-                                    break;
-                                case EditorInfo.IME_ACTION_NEXT:
-                                    // next stuff
-                                    Log.d("Action", "Next");
-                                    break;
-                            }
-                            return handled;
-                        }
-                    });
-                    return rootView2;
-                case 3:
-                // headW, headL, headD, weight, bodyD
-                    View rootView3 = inflater.inflate(R.layout.fragment_other_data2, container, false);
-                    return rootView3;
-            }
-            View rootViewDefault = inflater.inflate(R.layout.fragment_capture_data2, container, false);
-            return rootViewDefault;
-            //textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
-            //return rootView;
-        }
-    }
+//    public static class PlaceholderFragment extends Fragment {
+//         /* The fragment argument representing the section number for this
+//         * fragment.
+//         */
+//        private static final String ARG_SECTION_NUMBER = "section_number";
+//
+//        public PlaceholderFragment() {
+//        }
+//
+//        /**
+//         * Returns a new instance of this fragment for the given section
+//         * number.
+//         */
+//        public static PlaceholderFragment newInstance(int sectionNumber) {
+//            PlaceholderFragment fragment = new PlaceholderFragment();
+//            Bundle args = new Bundle();
+//            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
+//            fragment.setArguments(args);
+//            return fragment;
+//        }
+//
+//        @Override
+//        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+//                                 Bundle savedInstanceState) {
+//            int tabNumber = getArguments().getInt(ARG_SECTION_NUMBER);
+//            switch (tabNumber) {
+//                case 1:
+//                    View rootView1 = inflater.inflate(R.layout.fragment_capture_data2, container, false);
+//                // date, catchnum, location (captureID)
+//                    EditText editText1 = (EditText) rootView1.findViewById(R.id.enterDate);
+//                    editText1.setOnEditorActionListener(new TextView.OnEditorActionListener()
+//                    {
+//                        @Override
+//                        public boolean onEditorAction(TextView view, int actionId, KeyEvent event) {
+//                            Log.d("Function", "Start");
+//                            int result = actionId & EditorInfo.IME_MASK_ACTION;
+//                            Log.d("Result", String.valueOf(result));
+//                            boolean handled = false;
+//                            switch(result) {
+//                                case EditorInfo.IME_ACTION_DONE:
+//                                    // done stuff
+//                                    Log.d("Action", "Done");
+//                                    break;
+//                                case EditorInfo.IME_ACTION_NEXT:
+//                                    // next stuff
+//                                    Log.d("Action", "Next");
+//                                    break;
+//                            }
+//                            return handled;
+//                        }
+//                    });
+//                return rootView1;
+//                case 2:
+//                // strCLmin, strCLnt, strCW, curCLmin, curCLnt, curCW
+//                    View rootView2 = inflater.inflate(R.layout.fragment_carapace_data, container, false);
+//                    EditText editText2 = (EditText) rootView2.findViewById(R.id.enterStrCLMin);
+//                    editText2.setOnEditorActionListener(new TextView.OnEditorActionListener()
+//                    {
+//                        @Override
+//                        public boolean onEditorAction(TextView view, int actionId, KeyEvent event) {
+//                            Log.d("Function", "Start");
+//                            int result = actionId & EditorInfo.IME_MASK_ACTION;
+//                            Log.d("Result", String.valueOf(result));
+//                            boolean handled = false;
+//                            switch(result) {
+//                                case EditorInfo.IME_ACTION_DONE:
+//                                    // done stuff
+//                                    Log.d("Action", "Done");
+//                                    break;
+//                                case EditorInfo.IME_ACTION_NEXT:
+//                                    // next stuff
+//                                    Log.d("Action", "Next");
+//                                    break;
+//                            }
+//                            return handled;
+//                        }
+//                    });
+//                    return rootView2;
+//                case 3:
+//                // headW, headL, headD, weight, bodyD
+//                    View rootView3 = inflater.inflate(R.layout.fragment_other_data2, container, false);
+//                    EditText editText3 = (EditText) rootView3.findViewById(R.id.enterHeadDepth);
+//                    editText3.setOnEditorActionListener(new TextView.OnEditorActionListener()
+//                    {
+//                        @Override
+//                        public boolean onEditorAction(TextView view, int actionId, KeyEvent event) {
+//                            Log.d("Function", "Start");
+//                            int result = actionId & EditorInfo.IME_MASK_ACTION;
+//                            Log.d("Result", String.valueOf(result));
+//                            boolean handled = false;
+//                            switch(result) {
+//                                case EditorInfo.IME_ACTION_DONE:
+//                                    // done stuff
+//                                    Log.d("Action", "Done");
+//                                    break;
+//                                case EditorInfo.IME_ACTION_NEXT:
+//                                    // next stuff
+//                                    Log.d("Action", "Next");
+//                                    break;
+//                            }
+//                            return handled;
+//                        }
+//                    });
+//                    return rootView3;
+//            }
+//            View rootViewDefault = inflater.inflate(R.layout.fragment_capture_data2, container, false);
+//            return rootViewDefault;
+//            //textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
+//            //return rootView;
+//        }
+//    }*/
 
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
@@ -172,11 +222,11 @@ public class LogNewData extends AppCompatActivity {
             // Return a PlaceholderFragment (defined as a static inner class below).
             switch(position) {
                 case 0:
-                    return CaptureData.newInstance("","");
+                    return CaptureData.newInstance(t);
                 case 1:
-                    return CarapaceData.newInstance("", "");
+                    return CarapaceData.newInstance(t);
                 case 2:
-                    return OtherData.newInstance("","");
+                    return OtherData.newInstance(t);
             }
             throw new IndexOutOfBoundsException("case number");
         }

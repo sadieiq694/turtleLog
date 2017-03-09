@@ -1,13 +1,52 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.sadiela.app1.OtherData">
+    tools:context="com.example.sadiela.app1.CarapaceData">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
 
-</FrameLayout>
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/other_string"
+            android:id="@+id/carapace_string" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <EditText
+            android:layout_width="264dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/enterHeadDepth"
+            android:inputType="text"
+            android:imeOptions="actionNext"
+            android:hint="Head Depth"
+            android:background="#b1d1ff"
+            android:typeface="sans"
+            android:layout_column="1" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/EnterHeadWidth"
+            android:hint="Head Width"
+            android:background="#b1d1ff"
+            android:layout_column="1" />
+    </TableRow>
+
+
+</TableLayout>

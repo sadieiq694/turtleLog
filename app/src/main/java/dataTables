@@ -1,0 +1,43 @@
+CREATE TABLE turtles
+	(
+     ID integer primary key,
+     Name varchar(20),
+     Tags, ??
+     Captures, ??
+    );
+
+INSERT INTO supportContacts
+(ID, Name)
+VALUES
+(1, 'Frank');
+
+INSERT INTO supportContacts
+(ID, Name)
+VALUES
+(2, 'Felicia');
+
+-----------------------------------------
+CREATE TABLE captures
+    (
+      CaptureID TEXT,
+      Turtle TEXT,
+      CapDate int,
+      CatchNum integer primary key,
+      Location TEXT,
+      StraightCarapaceLengthMinimum real,
+      StraightCarapaceLengthNotchTip real,
+      StraightCarapaceWidth real,
+      HeadWidth real,
+      HeadLength real,
+      HeadDepth real,
+      CurvedCarapaceLengthMin real,
+      CurvedCarapaceLengthNotchTip real,
+      CurvedCarapaceWidth real,
+      Weight real,
+      BodyDepth real
+    );
+
+INSERT INTO captures
+(CaptureID, Turtle, CapDate, CatchNum, Location, StraightCarapaceLengthMinimum, StraightCarapaceLengthNotchTip)
+VALUES
+('Cap2', 'Fred', 392017, 2, 'Half Sound', 50, 54.2);

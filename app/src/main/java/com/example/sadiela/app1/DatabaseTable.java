@@ -9,7 +9,7 @@ import android.util.Log;
  * Created by sadie.la on 2/27/2017.
  */
 public class DatabaseTable {
-    private static final String TAG = "TurtleDatabase";
+    private static final String TAG = "CaptureDatabase";
     //Columns to include (add more later)
     public static final String CAPT_DATE = "DATE";
     public static final String CAPT_LOC = "LOCATION";
@@ -22,7 +22,7 @@ public class DatabaseTable {
     // public static final String
 
 
-    private static final String DATABASE_NAME = "TURTLES";
+    private static final String DATABASE_NAME = "CAPTURES";
     private static final int DATABASE_VERSION = 1;
 
     public final DatabaseOpenHelper database_open_helper;
