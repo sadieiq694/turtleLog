@@ -95,6 +95,7 @@ public class CaptureData extends Fragment {
     */
                 if (!hasFocus) {
                     //save input
+                    //cn =
                     validateInput(v);
                 }
             }

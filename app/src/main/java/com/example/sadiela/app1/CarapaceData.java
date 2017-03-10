@@ -27,12 +27,29 @@ import android.widget.Toast;
 public class CarapaceData extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    // strCLmin, strCLnt, strCW, curCLmin, curCLnt, curCW
+    private static final String  STR_CL_MIN = "Straight Carapace Length Minimum";
+    private static final String STR_CL_NT = "Straight Carapace Length Notch to Tip";
+    private static final String STR_CW = "Straight Carapace Width";
+    private static final String CUR_CL_MIN = "Curved Carapace Length Minimum";
+    private static final String CUR_CL_NT = "Curved Carapace Length Notch to Tip";
+    private static final String CUR_CW = "Curved Carapace Width";
 
     // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private double strCLmin;
+    private double strCLnt;
+    private double strCW;
+    private double curCLmin;
+    private double curCLnt;
+    private double curCW;
+
+    private EditText sclm;
+    private EditText sclnt;
+    private EditText scw;
+    private EditText cclm;
+    private EditText cclnt;
+    private EditText ccw;
+
 
     private OnFragmentInteractionListener mListener;
 
@@ -49,11 +66,15 @@ public class CarapaceData extends Fragment {
      * @return A new instance of fragment CarapaceData.
      */
     // TODO: Rename and change types and number of parameters
-    public static CarapaceData newInstance(String param1, String param2) {
+    public static CarapaceData newInstance(double strCLmin, double strCLnt, double strCW, double curCLmin, double curCLnt, double curCW) {
         CarapaceData fragment = new CarapaceData();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putDouble(STR_CL_MIN, strCLmin);
+        args.putDouble(STR_CL_NT, strCLnt);
+        args.putDouble(STR_CW, strCW);
+        args.putDouble(CUR_CL_MIN, curCLmin);
+        args.putDouble(CUR_CL_NT, curCLmin);
+        args.putDouble(CUR_CW, curCW);
         fragment.setArguments(args);
         return fragment;
     }
@@ -62,17 +83,15 @@ public class CarapaceData extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            strCLmin = getArguments().getDouble(STR_CL_MIN);
+            strCLnt = getArguments().getDouble(STR_CL_NT);
+            strCW = getArguments().getDouble(STR_CW);
+            curCLmin = getArguments().getDouble(CUR_CL_MIN);
+            curCLnt = getArguments().getDouble(CUR_CL_NT);
+            curCW = getArguments().getDouble(CUR_CW);
         }
     }
 
-    private EditText strCarMin;
-    public void buttonOnClick(View v) {
-        Button button = (Button) v;
-        strCarMin = (EditText) getActivity().findViewById(R.id.enterStrCLMin);
-
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
