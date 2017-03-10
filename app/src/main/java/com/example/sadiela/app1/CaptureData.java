@@ -4,9 +4,14 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.NotificationCompat;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
+import android.widget.EditText;
+import android.widget.TextView;
 
 
 /**
@@ -20,12 +25,20 @@ import android.view.ViewGroup;
 public class CaptureData extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    //private static final String ARG_PARAM1 = "param1";
-    //private static final String ARG_PARAM2 = "param2";
+    private static final String CAPT_NUM = "Capture Number";
+    private static final String LOCATION = "Location";
+    private static final String DATE = "Date";
 
     // TODO: Rename and change types of parameters
-    private Turtle t;
-    //private String mParam2;
+
+    private int captureNum;
+    private String location;
+    private String date;
+
+
+    private EditText cn;
+    private EditText dt;
+    private EditText lc;
 
     private OnFragmentInteractionListener mListener;
 
@@ -33,18 +46,13 @@ public class CaptureData extends Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment CaptureData.
-     */
     // TODO: Rename and change types and number of parameters
-    public static CaptureData newInstance(Turtle t) {
+    public static CaptureData newInstance(int captureNum, String location, String date) {
         CaptureData fragment = new CaptureData();
         Bundle args = new Bundle();
+        args.putInt(CAPT_NUM, captureNum);
+        args.putString(LOCATION, location);
+        args.putString(DATE, date);
         fragment.setArguments(args);
         return fragment;
     }
@@ -53,8 +61,9 @@ public class CaptureData extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            captureNum = getArguments().getInt(CAPT_NUM);
+            location = getArguments().getString(LOCATION);
+            date = getArguments().getString(DATE);
         }
     }
 
@@ -72,16 +81,54 @@ public class CaptureData extends Fragment {
         }
     }
 
-    /*@Override
+
+    @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }*/
+        cn = (EditText)getActivity().findViewById(R.id.captureNumber);
+        cn.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+    /* When focus is lost check that the text field
+    * has valid values.
+    */
+                if (!hasFocus) {
+                    //save input
+                    validateInput(v);
+                }
+            }
+        });
+        lc = (EditText)getActivity().findViewById(R.id.enterLocation);
+        lc.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+    /* When focus is lost check that the text field
+    * has valid values.
+    */
+                if (!hasFocus) {
+                    //save input
+                    validateInput(v);
+                }
+            }
+        });
+
+        dt = (EditText)getActivity().findViewById(R.id.enterDate);
+        dt.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+    /* When focus is lost check that the text field
+    * has valid values.
+    */
+                if (!hasFocus) {
+                    //save input
+                    validateInput(v);
+                }
+            }
+        });
+    }
 
     @Override
     public void onDetach() {
