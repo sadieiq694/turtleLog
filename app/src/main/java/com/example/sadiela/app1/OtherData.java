@@ -20,12 +20,16 @@ import android.view.ViewGroup;
 public class OtherData extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private static final String HEAD_DEPTH = "Head Depth";
+    private static final String HEAD_WIDTH = "Head Width";
+    private static final String HEAD_LENGTH = "Head Length";
+    private static final String BODY_DEPTH = "Body Depth";
 
     // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private double headDep;
+    private double headWid;
+    private double headLen;
+    private double bodyDep;
 
     private OnFragmentInteractionListener mListener;
 

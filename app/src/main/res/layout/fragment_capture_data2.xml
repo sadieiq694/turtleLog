@@ -8,15 +8,15 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
         android:id="@+id/enterDate"
         android:inputType="text"
         android:imeOptions="actionNext"
         android:hint="Date"
         android:background="#b1d1ff"
         android:typeface="sans"
-        android:layout_marginTop="154dp" />
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="92dp" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -37,10 +37,10 @@
         android:id="@+id/captureNumber"
         android:hint="Capture Number"
         android:background="#b1d1ff"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/enterLocation"
         android:layout_alignLeft="@+id/enterLocation"
         android:layout_alignStart="@+id/enterLocation"
-        android:layout_marginBottom="108dp" />
+        android:layout_marginTop="90dp" />
 
 
 </RelativeLayout>
