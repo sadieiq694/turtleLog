@@ -9,7 +9,7 @@ import java.util.List;
  */
 public class Capture {
     String captureID; //researchers will not have to fill this in
-    Date date; // " "
+    String date; // " "
     List<String> tags = new ArrayList<String>();
     int catchNum;
     String location;

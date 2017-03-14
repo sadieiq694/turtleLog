@@ -28,7 +28,8 @@ import android.widget.TextView;
 
 public class LogNewData extends AppCompatActivity implements CaptureData.OnFragmentInteractionListener {
 
-    private Turtle t = new Turtle();
+    //private Turtle t = new Turtle();
+    private Capture c = new Capture();
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
      * fragments for each of the sections. We use a
@@ -222,11 +223,11 @@ public class LogNewData extends AppCompatActivity implements CaptureData.OnFragm
             // Return a PlaceholderFragment (defined as a static inner class below).
             switch(position) {
                 case 0:
-                    return CaptureData.newInstance(t);
+                    return CaptureData.newInstance(c.catchNum, c.location, c.date);
                 case 1:
-                    return CarapaceData.newInstance(t);
+                    return CarapaceData.newInstance(c.strCLMin, c.strCLnt, c.strCW, c.curCLMin, c.curCLnt, c.curCW);
                 case 2:
-                    return OtherData.newInstance(t);
+                    return OtherData.newInstance(c.headD, c.headW, c.headL, c.bodyD);
             }
             throw new IndexOutOfBoundsException("case number");
         }

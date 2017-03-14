@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 
 /**
@@ -31,26 +32,24 @@ public class OtherData extends Fragment {
     private double headLen;
     private double bodyDep;
 
+    private EditText hd;
+    private EditText hw;
+    private EditText hl;
+    private EditText bd;
+
     private OnFragmentInteractionListener mListener;
 
     public OtherData() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment OtherData.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static OtherData newInstance(String param1, String param2) {
-        OtherData fragment = new OtherData();
+    public static CaptureData newInstance(double headDep, double headWid, double headLen, double bodyDep) {
+        CaptureData fragment = new CaptureData();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putDouble(HEAD_DEPTH, headDep);
+        args.putDouble(HEAD_WIDTH, headWid);
+        args.putDouble(HEAD_LENGTH, headLen);
+        args.putDouble(BODY_DEPTH, bodyDep);
         fragment.setArguments(args);
         return fragment;
     }
@@ -59,8 +58,10 @@ public class OtherData extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            headDep = getArguments().getDouble(HEAD_DEPTH);
+            headWid = getArguments().getDouble(HEAD_WIDTH);
+            headLen = getArguments().getDouble(HEAD_LENGTH);
+            bodyDep = getArguments().getDouble(BODY_DEPTH);
         }
     }
 

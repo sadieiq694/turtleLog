@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.NotificationCompat;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,7 +35,6 @@ public class CaptureData extends Fragment {
     private int captureNum;
     private String location;
     private String date;
-
 
     private EditText cn;
     private EditText dt;
@@ -74,17 +74,9 @@ public class CaptureData extends Fragment {
         return inflater.inflate(R.layout.fragment_capture_data2, container, false);
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
-
-
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
+    public void onStart() {
+        super.onStart();
         cn = (EditText)getActivity().findViewById(R.id.captureNumber);
         cn.setOnFocusChangeListener(new View.OnFocusChangeListener() {
 
@@ -95,8 +87,9 @@ public class CaptureData extends Fragment {
     */
                 if (!hasFocus) {
                     //save input
-                    //cn =
-                    validateInput(v);
+                    Log.d("saved data", (((EditText)v).getText().toString()));
+                    captureNum = Integer.parseInt(((EditText)v).getText().toString());
+                    Log.d("saving field", "capture number");
                 }
             }
         });
@@ -110,7 +103,9 @@ public class CaptureData extends Fragment {
     */
                 if (!hasFocus) {
                     //save input
-                    validateInput(v);
+                    location = ((EditText)v).getText().toString();
+                    Log.d("saving field", "location");
+
                 }
             }
         });
@@ -125,10 +120,17 @@ public class CaptureData extends Fragment {
     */
                 if (!hasFocus) {
                     //save input
-                    validateInput(v);
+                    date = ((EditText)v).getText().toString();
+                    Log.d("saving field", "date");
                 }
             }
         });
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
     }
 
     @Override
