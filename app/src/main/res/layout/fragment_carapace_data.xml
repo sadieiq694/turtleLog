@@ -1,4 +1,4 @@
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -6,47 +6,90 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/carapace_string"
-            android:id="@+id/carapace_string" />
-    </TableRow>
-
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <EditText
-            android:layout_width="264dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/enterStrCLMin"
-            android:inputType="text"
-            android:imeOptions="actionNext"
-            android:hint="Straight Carapace Length Min"
-            android:background="#b1d1ff"
-            android:typeface="sans"
-            android:layout_column="1" />
-    </TableRow>
-
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="number"
-            android:ems="10"
-            android:id="@+id/moreCarMeas"
-            android:hint="Curved Carapace Length Min"
-            android:background="#b1d1ff"
-            android:layout_column="1" />
-    </TableRow>
+    <EditText
+        android:layout_width="264dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/enterStrCLMin"
+        android:inputType="number"
+        android:imeOptions="actionNext"
+        android:hint="Straight Carapace Length Min"
+        android:background="#b1d1ff"
+        android:typeface="sans"
+        android:layout_column="1"
+        android:layout_marginTop="80dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 
 
-</TableLayout>
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:imeOptions="actionNext"
+        android:id="@+id/enterStrCarLenNT"
+        android:hint="Straight Carapace Length Notch-Tip"
+        android:background="#b1d1ff"
+        android:layout_column="1"
+        android:layout_marginTop="50dp"
+        android:layout_below="@+id/enterStrCLMin"
+        android:layout_alignLeft="@+id/enterStrCarWid"
+        android:layout_alignStart="@+id/enterStrCarWid" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:imeOptions="actionNext"
+        android:id="@+id/enterStrCarWid"
+        android:hint="Straight Carapace Width"
+        android:background="#b1d1ff"
+        android:layout_column="1"
+        android:layout_marginTop="50dp"
+        android:layout_below="@+id/enterStrCarLenNT"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:imeOptions="actionNext"
+        android:id="@+id/enterCurCarMin"
+        android:hint="Curved Carapace Length Min"
+        android:background="#b1d1ff"
+        android:layout_column="1"
+        android:layout_below="@+id/enterStrCarWid"
+        android:layout_marginTop="50dp"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:imeOptions="actionNext"
+        android:id="@+id/enterCurCarNT"
+        android:hint="Curved Carapace Length Notch-Tip"
+        android:background="#b1d1ff"
+        android:layout_column="1"
+        android:layout_below="@+id/enterCurCarMin"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/enterCurCarWid"
+        android:hint="Curved Carapace Width"
+        android:background="#b1d1ff"
+        android:layout_column="1"
+        android:layout_below="@+id/enterCurCarNT"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp" />
+
+
+</RelativeLayout>

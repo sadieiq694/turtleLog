@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,8 +44,8 @@ public class OtherData extends Fragment {
         // Required empty public constructor
     }
 
-    public static CaptureData newInstance(double headDep, double headWid, double headLen, double bodyDep) {
-        CaptureData fragment = new CaptureData();
+    public static OtherData newInstance(double headDep, double headWid, double headLen, double bodyDep) {
+        OtherData fragment = new OtherData();
         Bundle args = new Bundle();
         args.putDouble(HEAD_DEPTH, headDep);
         args.putDouble(HEAD_WIDTH, headWid);
@@ -72,11 +73,73 @@ public class OtherData extends Fragment {
         return inflater.inflate(R.layout.fragment_other_data2, container, false);
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
+    @Override
+    public void onStart() {
+        super.onStart();
+        hd = (EditText) getActivity().findViewById(R.id.enterHeadDepth);
+        hd.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+    /* When focus is lost check that the text field
+    * has valid values.
+    */
+                if (!hasFocus) {
+                    //save input
+                    Log.d("saved data", (((EditText) v).getText().toString()));
+                    headDep = Integer.parseInt(((EditText) v).getText().toString());
+                    Log.d("saving field", "head depth");
+                }
+            }
+        });
+        hl = (EditText) getActivity().findViewById(R.id.enterHeadLength);
+        hl.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+    /* When focus is lost check that the text field
+    * has valid values.
+    */
+                if (!hasFocus) {
+                    //save input
+                    Log.d("saved data", (((EditText) v).getText().toString()));
+                    headLen = Integer.parseInt(((EditText) v).getText().toString());
+                    Log.d("saving field", "head length");
+                }
+            }
+        });
+        hw = (EditText) getActivity().findViewById(R.id.enterHeadWidth);
+        hw.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+    /* When focus is lost check that the text field
+    * has valid values.
+    */
+                if (!hasFocus) {
+                    //save input
+                    Log.d("saved data", (((EditText) v).getText().toString()));
+                    headWid = Integer.parseInt(((EditText) v).getText().toString());
+                    Log.d("saving field", "head width");
+                }
+            }
+        });
+        bd = (EditText) getActivity().findViewById(R.id.enterBodyDepth);
+        bd.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+    /* When focus is lost check that the text field
+    * has valid values.
+    */
+                if (!hasFocus) {
+                    //save input
+                    Log.d("saved data", (((EditText) v).getText().toString()));
+                    bodyDep = Integer.parseInt(((EditText) v).getText().toString());
+                    Log.d("saving field", "body depth");
+                }
+            }
+        });
     }
 
     /*@Override

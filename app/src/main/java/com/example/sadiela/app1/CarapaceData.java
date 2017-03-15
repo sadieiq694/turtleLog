@@ -57,15 +57,6 @@ public class CarapaceData extends Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment CarapaceData.
-     */
-    // TODO: Rename and change types and number of parameters
     public static CarapaceData newInstance(double strCLmin, double strCLnt, double strCW, double curCLmin, double curCLnt, double curCW) {
         CarapaceData fragment = new CarapaceData();
         Bundle args = new Bundle();
@@ -102,26 +93,103 @@ public class CarapaceData extends Fragment {
         return inflater.inflate(R.layout.fragment_carapace_data, container, false);
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        sclm = (EditText)getActivity().findViewById(R.id.enterStrCLMin);
+        sclm.setOnFocusChangeListener(new View.OnFocusChangeListener() {
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+    /* When focus is lost check that the text field
+    * has valid values.
+    */
+                if (!hasFocus) {
+                    //save input
+                    Log.d("saved data", (((EditText)v).getText().toString()));
+                    strCLmin = Integer.parseInt(((EditText)v).getText().toString());
+                    Log.d("saving field", "capture number");
+                }
+            }
+        });
+        sclnt = (EditText)getActivity().findViewById(R.id.enterStrCarLenNT);
+        sclnt.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+    /* When focus is lost check that the text field
+    * has valid values.
+    */
+                if (!hasFocus) {
+                    //save input
+                    Log.d("saved data", (((EditText)v).getText().toString()));
+                    strCLnt = Integer.parseInt(((EditText)v).getText().toString());
+                    Log.d("saving field", "capture number");
+
+                }
+            }
+        });
+        scw = (EditText)getActivity().findViewById(R.id.enterStrCarWid);
+        scw.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+    /* When focus is lost check that the text field
+    * has valid values.
+    */
+                if (!hasFocus) {
+                    //save input
+                    Log.d("saved data", (((EditText)v).getText().toString()));
+                    strCW = Integer.parseInt(((EditText)v).getText().toString());
+                    Log.d("saving field", "capture number");
+                }
+            }
+        });
+        cclm = (EditText)getActivity().findViewById(R.id.enterCurCarMin);
+        cclm.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+    /* When focus is lost check that the text field
+    * has valid values.
+    */
+                if (!hasFocus) {
+                    //save input
+                    Log.d("saved data", (((EditText)v).getText().toString()));
+                    curCLmin = Integer.parseInt(((EditText)v).getText().toString());
+                    Log.d("saving field", "capture number");
+                }
+            }
+        });
+        cclnt = (EditText)getActivity().findViewById(R.id.enterCurCarNT);
+        cclnt.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+    /* When focus is lost check that the text field
+    * has valid values.
+    */
+                if (!hasFocus) {
+                    //save input
+                    Log.d("saved data", (((EditText)v).getText().toString()));
+                    curCLnt = Integer.parseInt(((EditText)v).getText().toString());
+                    Log.d("saving field", "capture number");
+                }
+            }
+        });
+        ccw = (EditText)getActivity().findViewById(R.id.enterCurCarWid);
+        ccw.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+    /* When focus is lost check that the text field
+    * has valid values.
+    */
+                if (!hasFocus) {
+                    //save input
+                    Log.d("saved data", (((EditText)v).getText().toString()));
+                    curCW = Integer.parseInt(((EditText)v).getText().toString());
+                    Log.d("saving field", "capture number");
+                }
+            }
+        });
     }
-
-
-/*    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
-*/
 
     @Override
     public void onDetach() {
