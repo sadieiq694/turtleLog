@@ -26,10 +26,34 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class LogNewData extends AppCompatActivity implements CaptureData.OnFragmentInteractionListener {
+public class LogNewData extends AppCompatActivity implements FragmentCommunicator{
+
+    public interface OnFragmentInteractionListener {
+        // TODO: Update argument type and name
+        void onFragmentInteraction(Uri uri);
+    }
+
+    private Capture c = new Capture();
+
+    public void setCaptureData(Integer cap, String l, String d) {
+        c.catchNum = cap;
+        c.location = l;
+        c.date = d;
+    }
+
+    @Override
+    public void setCarapaceData(double strCLmin, double strCLnt, double strCW, double curCLmin, double curCLnt, double curCW) {
+
+    }
+
+    @Override
+    public void setOtherData(double headDep, double headWid, double headLen, double bodyDep) {
+
+    }
+
 
     //private Turtle t = new Turtle();
-    private Capture c = new Capture();
+
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
      * fragments for each of the sections. We use a
@@ -64,6 +88,7 @@ public class LogNewData extends AppCompatActivity implements CaptureData.OnFragm
         tabLayout.setupWithViewPager(mViewPager);
 
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

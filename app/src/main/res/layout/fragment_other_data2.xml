@@ -10,13 +10,13 @@
         android:layout_width="264dp"
         android:layout_height="wrap_content"
         android:id="@+id/enterHeadDepth"
-        android:inputType="text"
+        android:inputType="number"
         android:imeOptions="actionNext"
         android:hint="Head Depth"
         android:background="#b1d1ff"
         android:typeface="sans"
         android:layout_column="1"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="148dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
@@ -45,7 +45,7 @@
         android:background="#b1d1ff"
         android:layout_column="1"
         android:layout_marginTop="50dp"
-        android:layout_below="@+id/EnterHeadWidth"
+        android:layout_below="@+id/enterHeadWidth"
         android:layout_centerHorizontal="true" />
 
     <EditText
@@ -58,7 +58,7 @@
         android:background="#b1d1ff"
         android:layout_column="1"
         android:layout_marginTop="50dp"
-        android:layout_below="@+id/EnterHeadWidth"
+        android:layout_below="@+id/enterHeadWidth"
         android:layout_centerHorizontal="true" />
 
 

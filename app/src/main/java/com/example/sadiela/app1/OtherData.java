@@ -5,10 +5,13 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
+import android.widget.TextView;
 
 
 /**
@@ -66,6 +69,14 @@ public class OtherData extends Fragment {
         }
     }
 
+    public static Integer TryParseInt(String inputStr){
+        try {
+            return Integer.parseInt(inputStr);
+        } catch (NumberFormatException ex) {
+            return null;
+        }
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -86,9 +97,12 @@ public class OtherData extends Fragment {
     */
                 if (!hasFocus) {
                     //save input
-                    Log.d("saved data", (((EditText) v).getText().toString()));
-                    headDep = Integer.parseInt(((EditText) v).getText().toString());
-                    Log.d("saving field", "head depth");
+                    Integer data = TryParseInt(((EditText) v).getText().toString());
+                    if (data != null) {
+                        headDep = data;
+                        Log.d("saved head depth", data.toString());
+                        Log.d("saving field", "head depth");
+                    }
                 }
             }
         });
@@ -102,9 +116,12 @@ public class OtherData extends Fragment {
     */
                 if (!hasFocus) {
                     //save input
-                    Log.d("saved data", (((EditText) v).getText().toString()));
-                    headLen = Integer.parseInt(((EditText) v).getText().toString());
-                    Log.d("saving field", "head length");
+                    Integer data = TryParseInt((((EditText) v).getText().toString()));
+                    if (data != null) {
+                        Log.d("saved data", data.toString());
+                        headLen = data;
+                        Log.d("saving field", "head length");
+                    }
                 }
             }
         });
@@ -118,9 +135,12 @@ public class OtherData extends Fragment {
     */
                 if (!hasFocus) {
                     //save input
-                    Log.d("saved data", (((EditText) v).getText().toString()));
-                    headWid = Integer.parseInt(((EditText) v).getText().toString());
-                    Log.d("saving field", "head width");
+                    Integer data = TryParseInt((((EditText) v).getText().toString()));
+                    if (data != null) {
+                        Log.d("saved data", data.toString());
+                        headWid = data;
+                        Log.d("saving field", "head width");
+                    }
                 }
             }
         });
@@ -134,10 +154,23 @@ public class OtherData extends Fragment {
     */
                 if (!hasFocus) {
                     //save input
-                    Log.d("saved data", (((EditText) v).getText().toString()));
-                    bodyDep = Integer.parseInt(((EditText) v).getText().toString());
-                    Log.d("saving field", "body depth");
+                    Integer data = TryParseInt((((EditText) v).getText().toString()));
+                    if (data != null) {
+                        Log.d("saved data", data.toString());
+                        bodyDep = data;
+                    }
+                    Log.d("saving field", "head width");
                 }
+            }
+        });
+        bd.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_NEXT) {
+                    //switch to new activity
+
+                }
+                return true;
             }
         });
     }
@@ -172,5 +205,9 @@ public class OtherData extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    public interface FragmentCommunicator{
+        public void passDataToActivity();
     }
 }

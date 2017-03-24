@@ -26,7 +26,8 @@
         android:id="@+id/enterLocation"
         android:hint="Location"
         android:background="#b1d1ff"
-        android:layout_centerVertical="true"
+        android:layout_marginTop="73dp"
+        android:layout_below="@+id/enterDate"
         android:layout_centerHorizontal="true" />
 
     <EditText
@@ -41,6 +42,15 @@
         android:layout_alignLeft="@+id/enterLocation"
         android:layout_alignStart="@+id/enterLocation"
         android:layout_marginTop="90dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save"
+        android:id="@+id/button"
+        android:layout_below="@+id/captureNumber"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="55dp" />
 
 
 </RelativeLayout>

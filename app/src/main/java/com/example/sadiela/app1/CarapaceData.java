@@ -93,6 +93,14 @@ public class CarapaceData extends Fragment {
         return inflater.inflate(R.layout.fragment_carapace_data, container, false);
     }
 
+    public static Integer TryParseInt(String inputStr){
+        try {
+            return Integer.parseInt(inputStr);
+        } catch (NumberFormatException ex) {
+            return null;
+        }
+    }
+
     @Override
     public void onStart() {
         super.onStart();
@@ -106,9 +114,12 @@ public class CarapaceData extends Fragment {
     */
                 if (!hasFocus) {
                     //save input
-                    Log.d("saved data", (((EditText)v).getText().toString()));
-                    strCLmin = Integer.parseInt(((EditText)v).getText().toString());
-                    Log.d("saving field", "capture number");
+                    Integer data = TryParseInt(((EditText) v).getText().toString());
+                    if (data != null) {
+                        Log.d("saved data", data.toString());
+                        strCLmin = data;
+                        Log.d("saving field", "straight carapace length minimum");
+                    }
                 }
             }
         });
@@ -122,10 +133,12 @@ public class CarapaceData extends Fragment {
     */
                 if (!hasFocus) {
                     //save input
-                    Log.d("saved data", (((EditText)v).getText().toString()));
-                    strCLnt = Integer.parseInt(((EditText)v).getText().toString());
-                    Log.d("saving field", "capture number");
-
+                    Integer data = TryParseInt(((EditText) v).getText().toString());
+                    if (data != null) {
+                        Log.d("saved data", data.toString());
+                        strCLnt = data;
+                        Log.d("saving field", "straight carapace notch-tip");
+                    }
                 }
             }
         });
@@ -138,9 +151,12 @@ public class CarapaceData extends Fragment {
     */
                 if (!hasFocus) {
                     //save input
-                    Log.d("saved data", (((EditText)v).getText().toString()));
-                    strCW = Integer.parseInt(((EditText)v).getText().toString());
-                    Log.d("saving field", "capture number");
+                    Integer data = TryParseInt(((EditText) v).getText().toString());
+                    if (data != null) {
+                        Log.d("saved data", data.toString());
+                        strCW = data;
+                        Log.d("saving field", "straight carapace width");
+                    }
                 }
             }
         });
@@ -153,9 +169,12 @@ public class CarapaceData extends Fragment {
     */
                 if (!hasFocus) {
                     //save input
-                    Log.d("saved data", (((EditText)v).getText().toString()));
-                    curCLmin = Integer.parseInt(((EditText)v).getText().toString());
-                    Log.d("saving field", "capture number");
+                    Integer data = TryParseInt(((EditText) v).getText().toString());
+                    if (data != null) {
+                        Log.d("saved data", data.toString());
+                        curCLmin = data;
+                        Log.d("saving field", "curved carapace length minimum");
+                    }
                 }
             }
         });
@@ -168,9 +187,12 @@ public class CarapaceData extends Fragment {
     */
                 if (!hasFocus) {
                     //save input
-                    Log.d("saved data", (((EditText)v).getText().toString()));
-                    curCLnt = Integer.parseInt(((EditText)v).getText().toString());
-                    Log.d("saving field", "capture number");
+                    Integer data = TryParseInt(((EditText) v).getText().toString());
+                    if (data != null) {
+                        Log.d("saved data", data.toString());
+                        curCLnt = data;
+                        Log.d("saving field", "curved carapace length notch-tip");
+                    }
                 }
             }
         });
@@ -183,9 +205,12 @@ public class CarapaceData extends Fragment {
     */
                 if (!hasFocus) {
                     //save input
-                    Log.d("saved data", (((EditText)v).getText().toString()));
-                    curCW = Integer.parseInt(((EditText)v).getText().toString());
-                    Log.d("saving field", "capture number");
+                    Integer data = TryParseInt(((EditText) v).getText().toString());
+                    if (data != null) {
+                        Log.d("saved data", data.toString());
+                        curCW = data;
+                        Log.d("saving field", "curved carapace width");
+                    }
                 }
             }
         });
