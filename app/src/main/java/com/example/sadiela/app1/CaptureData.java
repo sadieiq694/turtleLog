@@ -12,19 +12,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link CaptureData.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link CaptureData#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class CaptureData extends Fragment {
+public class CaptureData extends Fragment implements View.OnClickListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String CAPT_NUM = "Capture Number";
@@ -40,8 +32,6 @@ public class CaptureData extends Fragment {
     private EditText cn;
     private EditText dt;
     private EditText lc;
-
-    private OnFragmentInteractionListener mListener;
 
     public CaptureData() {
         // Required empty public constructor
@@ -71,8 +61,19 @@ public class CaptureData extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        Button b = (Button) getView().findViewById(R.id.saveCapData);
+        b.setOnClickListener(this);
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_capture_data2, container, false);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.saveCapData:
+                saveCapture(v);
+                break;
+        }
     }
 
     public static Integer TryParseInt(String inputStr) {
@@ -145,17 +146,20 @@ public class CaptureData extends Fragment {
 
     }
 
-    public void saveData(View v) {
+    public void saveCapture(View v) {
         if(captureNum != 0 && location != null && date != null) {
             FragmentCommunicator fc = (FragmentCommunicator)getActivity();
             fc.setCaptureData(captureNum, location, date);
+            Log.d("setting fragment data", "Capture");
+        }
+        else {
+            //notify user
         }
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
-        mListener = null;
     }
 
 }

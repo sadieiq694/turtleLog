@@ -24,7 +24,7 @@ import android.widget.Toast;
  * Use the {@link CarapaceData#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class CarapaceData extends Fragment {
+public class CarapaceData extends Fragment implements View.OnClickListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     // strCLmin, strCLnt, strCW, curCLmin, curCLnt, curCW
@@ -89,13 +89,24 @@ public class CarapaceData extends Fragment {
                              Bundle savedInstanceState) {
         Log.d("Function", "Started");
         // Inflate the layout for this fragment
+        Button b = (Button) getView().findViewById(R.id.saveCarData);
+        b.setOnClickListener(this);
 
         return inflater.inflate(R.layout.fragment_carapace_data, container, false);
     }
 
-    public static Integer TryParseInt(String inputStr){
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.saveCarData:
+                saveCarapace(v);
+                break;
+        }
+    }
+
+    public static Double TryParseDouble(String inputStr){
         try {
-            return Integer.parseInt(inputStr);
+            return Double.parseDouble(inputStr);
         } catch (NumberFormatException ex) {
             return null;
         }
@@ -114,7 +125,8 @@ public class CarapaceData extends Fragment {
     */
                 if (!hasFocus) {
                     //save input
-                    Integer data = TryParseInt(((EditText) v).getText().toString());
+
+                    Double data = TryParseDouble(((EditText) v).getText().toString());
                     if (data != null) {
                         Log.d("saved data", data.toString());
                         strCLmin = data;
@@ -133,7 +145,7 @@ public class CarapaceData extends Fragment {
     */
                 if (!hasFocus) {
                     //save input
-                    Integer data = TryParseInt(((EditText) v).getText().toString());
+                    Double data = TryParseDouble(((EditText) v).getText().toString());
                     if (data != null) {
                         Log.d("saved data", data.toString());
                         strCLnt = data;
@@ -151,7 +163,7 @@ public class CarapaceData extends Fragment {
     */
                 if (!hasFocus) {
                     //save input
-                    Integer data = TryParseInt(((EditText) v).getText().toString());
+                    Double data = TryParseDouble(((EditText) v).getText().toString());
                     if (data != null) {
                         Log.d("saved data", data.toString());
                         strCW = data;
@@ -169,7 +181,7 @@ public class CarapaceData extends Fragment {
     */
                 if (!hasFocus) {
                     //save input
-                    Integer data = TryParseInt(((EditText) v).getText().toString());
+                    Double data = TryParseDouble(((EditText) v).getText().toString());
                     if (data != null) {
                         Log.d("saved data", data.toString());
                         curCLmin = data;
@@ -187,7 +199,7 @@ public class CarapaceData extends Fragment {
     */
                 if (!hasFocus) {
                     //save input
-                    Integer data = TryParseInt(((EditText) v).getText().toString());
+                    Double data = TryParseDouble(((EditText) v).getText().toString());
                     if (data != null) {
                         Log.d("saved data", data.toString());
                         curCLnt = data;
@@ -205,7 +217,7 @@ public class CarapaceData extends Fragment {
     */
                 if (!hasFocus) {
                     //save input
-                    Integer data = TryParseInt(((EditText) v).getText().toString());
+                    Double data = TryParseDouble(((EditText) v).getText().toString());
                     if (data != null) {
                         Log.d("saved data", data.toString());
                         curCW = data;
@@ -220,6 +232,16 @@ public class CarapaceData extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    public void saveCarapace(View v) {
+        if(strCLmin != 0 && strCLnt != 0 && strCW != 0 && curCLmin != 0 && curCLnt != 0 && curCW != 0) {
+            FragmentCommunicator fc = (FragmentCommunicator)getActivity();
+            fc.setCarapaceData(strCLmin, strCLnt, strCW, curCLmin, curCLnt, curCW);
+        }
+        else {
+            //notify user
+        }
     }
 
     /**

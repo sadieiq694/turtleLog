@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -22,7 +23,7 @@ import android.widget.TextView;
  * Use the {@link OtherData#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class OtherData extends Fragment {
+public class OtherData extends Fragment implements View.OnClickListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String HEAD_DEPTH = "Head Depth";
@@ -69,9 +70,9 @@ public class OtherData extends Fragment {
         }
     }
 
-    public static Integer TryParseInt(String inputStr){
+    public static Double TryParseDouble(String inputStr){
         try {
-            return Integer.parseInt(inputStr);
+            return Double.parseDouble(inputStr);
         } catch (NumberFormatException ex) {
             return null;
         }
@@ -81,7 +82,18 @@ public class OtherData extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        Button b = (Button) getView().findViewById(R.id.saveOthData);
+        b.setOnClickListener(this);
         return inflater.inflate(R.layout.fragment_other_data2, container, false);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.saveCapData:
+                saveOther(v);
+                break;
+        }
     }
 
     @Override
@@ -97,7 +109,7 @@ public class OtherData extends Fragment {
     */
                 if (!hasFocus) {
                     //save input
-                    Integer data = TryParseInt(((EditText) v).getText().toString());
+                    Double data = TryParseDouble(((EditText) v).getText().toString());
                     if (data != null) {
                         headDep = data;
                         Log.d("saved head depth", data.toString());
@@ -116,7 +128,7 @@ public class OtherData extends Fragment {
     */
                 if (!hasFocus) {
                     //save input
-                    Integer data = TryParseInt((((EditText) v).getText().toString()));
+                    Double data = TryParseDouble((((EditText) v).getText().toString()));
                     if (data != null) {
                         Log.d("saved data", data.toString());
                         headLen = data;
@@ -135,7 +147,7 @@ public class OtherData extends Fragment {
     */
                 if (!hasFocus) {
                     //save input
-                    Integer data = TryParseInt((((EditText) v).getText().toString()));
+                    Double data = TryParseDouble((((EditText) v).getText().toString()));
                     if (data != null) {
                         Log.d("saved data", data.toString());
                         headWid = data;
@@ -154,7 +166,7 @@ public class OtherData extends Fragment {
     */
                 if (!hasFocus) {
                     //save input
-                    Integer data = TryParseInt((((EditText) v).getText().toString()));
+                    Double data = TryParseDouble((((EditText) v).getText().toString()));
                     if (data != null) {
                         Log.d("saved data", data.toString());
                         bodyDep = data;
@@ -190,6 +202,16 @@ public class OtherData extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    public void saveOther(View v) {
+        if(headDep != 0 && headWid != 0 && headLen != 0 && bodyDep != 0) {
+            com.example.sadiela.app1.FragmentCommunicator fc = (com.example.sadiela.app1.FragmentCommunicator)getActivity();
+            fc.setOtherData(headDep, headWid, headLen, bodyDep);
+        }
+        else {
+            //notify user
+        }
     }
 
     /**

@@ -26,7 +26,7 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class LogNewData extends AppCompatActivity implements FragmentCommunicator{
+public class LogNewData extends AppCompatActivity implements FragmentCommunicator {
 
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
@@ -43,12 +43,20 @@ public class LogNewData extends AppCompatActivity implements FragmentCommunicato
 
     @Override
     public void setCarapaceData(double strCLmin, double strCLnt, double strCW, double curCLmin, double curCLnt, double curCW) {
-
+        c.strCLMin = strCLmin;
+        c.strCLnt = strCLnt;
+        c.strCW = strCW;
+        c.curCLMin = curCLmin;
+        c.curCLnt = curCLnt;
+        c.curCW = curCW;
     }
 
     @Override
     public void setOtherData(double headDep, double headWid, double headLen, double bodyDep) {
-
+        c.headD = headDep;
+        c.headW = headWid;
+        c.headL = headLen;
+        c.bodyD = bodyDep;
     }
 
 
@@ -112,10 +120,9 @@ public class LogNewData extends AppCompatActivity implements FragmentCommunicato
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public void onFragmentInteraction(Uri uri) {
-
-    }
+    //@Override
+    //public void onFragmentInteraction(Uri uri) {
+    //}
 
 
     /**

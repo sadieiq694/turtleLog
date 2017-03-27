@@ -46,8 +46,9 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Save"
-        android:id="@+id/button"
+        android:onClick="saveCapture"
+        android:text= "save"
+        android:id="@+id/saveCapData"
         android:layout_below="@+id/captureNumber"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="55dp" />

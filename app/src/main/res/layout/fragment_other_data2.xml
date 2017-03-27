@@ -61,5 +61,15 @@
         android:layout_below="@+id/enterHeadWidth"
         android:layout_centerHorizontal="true" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save"
+        android:onClick="saveOther"
+        android:id="@+id/saveOthData"
+        android:layout_below="@+id/enterHeadLength"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="46dp" />
+
 
 </RelativeLayout>
