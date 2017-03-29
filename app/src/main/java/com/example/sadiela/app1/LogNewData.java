@@ -1,6 +1,7 @@
 package com.example.sadiela.app1;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.support.design.widget.TabLayout;
@@ -57,6 +58,7 @@ public class LogNewData extends AppCompatActivity implements FragmentCommunicato
         c.headW = headWid;
         c.headL = headLen;
         c.bodyD = bodyDep;
+        startActivity(new Intent(this, MainActivity.class));
     }
 
 

@@ -1,6 +1,7 @@
 package com.example.sadiela.app1;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -13,6 +14,7 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 /**
@@ -23,7 +25,7 @@ import android.widget.TextView;
  * Use the {@link OtherData#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class OtherData extends Fragment implements View.OnClickListener {
+public class OtherData extends Fragment implements View.OnClickListener, View.OnFocusChangeListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String HEAD_DEPTH = "Head Depth";
@@ -82,99 +84,87 @@ public class OtherData extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        Button b = (Button) getView().findViewById(R.id.saveOthData);
+        View v = inflater.inflate(R.layout.fragment_other_data2, container, false);
+        Button b = (Button) v.findViewById(R.id.saveOthData);
         b.setOnClickListener(this);
-        return inflater.inflate(R.layout.fragment_other_data2, container, false);
+        return v;
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.saveCapData:
+            case R.id.saveOthData:
                 saveOther(v);
                 break;
         }
     }
 
+    void parseField(View v)
+    {
+        switch (v.getId())
+        {
+            case R.id.enterHeadDepth: {
+                Double data = TryParseDouble(((EditText) v).getText().toString());
+                if (data != null) {
+                    headDep = data;
+                    Log.d("saved head depth", data.toString());
+                    Log.d("saving field", "head depth");
+                }
+            }
+            break;
+            case R.id.enterHeadLength: {
+                Double data = TryParseDouble((((EditText) v).getText().toString()));
+                if (data != null) {
+                    Log.d("saved data", data.toString());
+                    headLen = data;
+                    Log.d("saving field", "head length");
+                }
+            }
+            break;
+            case R.id.enterHeadWidth:  {
+                //save input
+                Double data = TryParseDouble((((EditText) v).getText().toString()));
+                if (data != null) {
+                    Log.d("saved data", data.toString());
+                    headWid = data;
+                    Log.d("saving field", "head width");
+                }
+            }
+            break;
+            case R.id.enterBodyDepth:
+            {
+                //save input
+                Double data = TryParseDouble((((EditText) v).getText().toString()));
+                if (data != null) {
+                    Log.d("saved data", data.toString());
+                    bodyDep = data;
+                }
+                Log.d("saving field", "body depth");
+            }
+        }
+    }
+
+    //@Override
+    public void onFocusChange(View v, boolean hasFocus) {
+        if (!hasFocus) {
+            //save input
+            parseField(v);
+        }
+    }
+
+
     @Override
     public void onStart() {
         super.onStart();
         hd = (EditText) getActivity().findViewById(R.id.enterHeadDepth);
-        hd.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-    /* When focus is lost check that the text field
-    * has valid values.
-    */
-                if (!hasFocus) {
-                    //save input
-                    Double data = TryParseDouble(((EditText) v).getText().toString());
-                    if (data != null) {
-                        headDep = data;
-                        Log.d("saved head depth", data.toString());
-                        Log.d("saving field", "head depth");
-                    }
-                }
-            }
-        });
+        hd.setOnFocusChangeListener(this);
         hl = (EditText) getActivity().findViewById(R.id.enterHeadLength);
-        hl.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-    /* When focus is lost check that the text field
-    * has valid values.
-    */
-                if (!hasFocus) {
-                    //save input
-                    Double data = TryParseDouble((((EditText) v).getText().toString()));
-                    if (data != null) {
-                        Log.d("saved data", data.toString());
-                        headLen = data;
-                        Log.d("saving field", "head length");
-                    }
-                }
-            }
-        });
+        hl.setOnFocusChangeListener(this);
         hw = (EditText) getActivity().findViewById(R.id.enterHeadWidth);
-        hw.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-    /* When focus is lost check that the text field
-    * has valid values.
-    */
-                if (!hasFocus) {
-                    //save input
-                    Double data = TryParseDouble((((EditText) v).getText().toString()));
-                    if (data != null) {
-                        Log.d("saved data", data.toString());
-                        headWid = data;
-                        Log.d("saving field", "head width");
-                    }
-                }
-            }
-        });
+        hw.setOnFocusChangeListener(this);
         bd = (EditText) getActivity().findViewById(R.id.enterBodyDepth);
-        bd.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        bd.setOnFocusChangeListener(this);
 
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-    /* When focus is lost check that the text field
-    * has valid values.
-    */
-                if (!hasFocus) {
-                    //save input
-                    Double data = TryParseDouble((((EditText) v).getText().toString()));
-                    if (data != null) {
-                        Log.d("saved data", data.toString());
-                        bodyDep = data;
-                    }
-                    Log.d("saving field", "head width");
-                }
-            }
-        });
         bd.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
@@ -186,6 +176,99 @@ public class OtherData extends Fragment implements View.OnClickListener {
             }
         });
     }
+
+
+
+//    @Override
+//    public void onStart() {
+//        super.onStart();
+//        hd = (EditText) getActivity().findViewById(R.id.enterHeadDepth);
+//        hd.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+//
+//            @Override
+//            public void onFocusChange(View v, boolean hasFocus) {
+//    /* When focus is lost check that the text field
+//    * has valid values.
+//    */
+//                if (!hasFocus) {
+//                    //save input
+//                    Double data = TryParseDouble(((EditText) v).getText().toString());
+//                    if (data != null) {
+//                        headDep = data;
+//                        Log.d("saved head depth", data.toString());
+//                        Log.d("saving field", "head depth");
+//                    }
+//                }
+//            }
+//        });
+//        hl = (EditText) getActivity().findViewById(R.id.enterHeadLength);
+//        hl.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+//
+//            @Override
+//            public void onFocusChange(View v, boolean hasFocus) {
+//    /* When focus is lost check that the text field
+//    * has valid values.
+//    */
+//                if (!hasFocus) {
+//                    //save input
+//                    Double data = TryParseDouble((((EditText) v).getText().toString()));
+//                    if (data != null) {
+//                        Log.d("saved data", data.toString());
+//                        headLen = data;
+//                        Log.d("saving field", "head length");
+//                    }
+//                }
+//            }
+//        });
+//        hw = (EditText) getActivity().findViewById(R.id.enterHeadWidth);
+//        hw.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+//
+//            @Override
+//            public void onFocusChange(View v, boolean hasFocus) {
+//    /* When focus is lost check that the text field
+//    * has valid values.
+//    */
+//                if (!hasFocus) {
+//                    //save input
+//                    Double data = TryParseDouble((((EditText) v).getText().toString()));
+//                    if (data != null) {
+//                        Log.d("saved data", data.toString());
+//                        headWid = data;
+//                        Log.d("saving field", "head width");
+//                    }
+//                }
+//            }
+//        });
+//        bd = (EditText) getActivity().findViewById(R.id.enterBodyDepth);
+//        bd.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+//
+//            @Override
+//            public void onFocusChange(View v, boolean hasFocus) {
+//    /* When focus is lost check that the text field
+//    * has valid values.
+//    */
+//                if (!hasFocus) {
+//                    //save input
+//                    Double data = TryParseDouble((((EditText) v).getText().toString()));
+//                    if (data != null) {
+//                        Log.d("saved data", data.toString());
+//                        bodyDep = data;
+//                    }
+//                    Log.d("saving field", "head width");
+//                }
+//            }
+//        });
+//        bd.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+//            @Override
+//            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+//                if (actionId == EditorInfo.IME_ACTION_NEXT) {
+//                    //switch to new activity
+//
+//                }
+//                return true;
+//            }
+//        });
+//    }
 
     /*@Override
     public void onAttach(Context context) {
@@ -205,25 +288,36 @@ public class OtherData extends Fragment implements View.OnClickListener {
     }
 
     public void saveOther(View v) {
+
+        parseField(getActivity().findViewById(R.id.enterHeadDepth));
+        parseField(getActivity().findViewById(R.id.enterHeadDepth));
+        parseField(getActivity().findViewById(R.id.enterHeadDepth));
+        parseField(getActivity().findViewById(R.id.enterHeadDepth));
+
         if(headDep != 0 && headWid != 0 && headLen != 0 && bodyDep != 0) {
             com.example.sadiela.app1.FragmentCommunicator fc = (com.example.sadiela.app1.FragmentCommunicator)getActivity();
             fc.setOtherData(headDep, headWid, headLen, bodyDep);
         }
         else {
-            //notify user
+            CharSequence text = "We have a problem!";
+            int duration = Toast.LENGTH_SHORT;
+
+            Toast toast = Toast.makeText(getActivity(), text, duration);
+            toast.show();
         }
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p/>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
+
+        /**
+         * This interface must be implemented by activities that contain this
+         * fragment to allow an interaction in this fragment to be communicated
+         * to the activity and potentially other fragments contained in that
+         * activity.
+         * <p/>
+         * See the Android Training lesson <a href=
+         * "http://developer.android.com/training/basics/fragments/communicating.html"
+         * >Communicating with Other Fragments</a> for more information.
+         */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);

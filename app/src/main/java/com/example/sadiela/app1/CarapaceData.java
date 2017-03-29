@@ -24,7 +24,7 @@ import android.widget.Toast;
  * Use the {@link CarapaceData#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class CarapaceData extends Fragment implements View.OnClickListener {
+public class CarapaceData extends Fragment implements View.OnClickListener, View.OnFocusChangeListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     // strCLmin, strCLnt, strCW, curCLmin, curCLnt, curCW
@@ -88,11 +88,12 @@ public class CarapaceData extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         Log.d("Function", "Started");
+        View v = inflater.inflate(R.layout.fragment_carapace_data, container, false);
         // Inflate the layout for this fragment
-        Button b = (Button) getView().findViewById(R.id.saveCarData);
+        Button b = (Button) v.findViewById(R.id.saveCarData);
         b.setOnClickListener(this);
 
-        return inflater.inflate(R.layout.fragment_carapace_data, container, false);
+        return v;
     }
 
     @Override
@@ -112,121 +113,225 @@ public class CarapaceData extends Fragment implements View.OnClickListener {
         }
     }
 
+    void parseField(View v)
+    {
+        switch (v.getId())
+        {
+            case R.id.enterStrCLMin: {
+                Double data = TryParseDouble(((EditText) v).getText().toString());
+                if (data != null) {
+                    strCLmin = data;
+                    Log.d("saved head depth", data.toString());
+                    Log.d("saving field", "head depth");
+                }
+            }
+            break;
+            case R.id.enterStrCarLenNT: {
+                Double data = TryParseDouble((((EditText) v).getText().toString()));
+                if (data != null) {
+                    Log.d("saved data", data.toString());
+                    strCLnt = data;
+                    Log.d("saving field", "head length");
+                }
+            }
+            break;
+            case R.id.enterStrCarWid:  {
+                //save input
+                Double data = TryParseDouble((((EditText) v).getText().toString()));
+                if (data != null) {
+                    Log.d("saved data", data.toString());
+                    strCW = data;
+                    Log.d("saving field", "head width");
+                }
+            }
+            break;
+            case R.id.enterCurCarMin:
+            {
+                //save input
+                Double data = TryParseDouble((((EditText) v).getText().toString()));
+                if (data != null) {
+                    Log.d("saved data", data.toString());
+                    curCLmin = data;
+                }
+                Log.d("saving field", "body depth");
+            }
+            break;
+            case R.id.enterCurCarNT:
+            {
+                //save input
+                Double data = TryParseDouble((((EditText) v).getText().toString()));
+                if (data != null) {
+                    Log.d("saved data", data.toString());
+                    curCLnt = data;
+                }
+                Log.d("saving field", "body depth");
+            }
+            break;
+            case R.id.enterCurCarWid:
+            {
+                //save input
+                Double data = TryParseDouble((((EditText) v).getText().toString()));
+                if (data != null) {
+                    Log.d("saved data", data.toString());
+                    curCW = data;
+                }
+                Log.d("saving field", "body depth");
+            }
+        }
+    }
+
+    //@Override
+    public void onFocusChange(View v, boolean hasFocus) {
+        if (!hasFocus) {
+            //save input
+            parseField(v);
+        }
+    }
+
+
     @Override
     public void onStart() {
         super.onStart();
-        sclm = (EditText)getActivity().findViewById(R.id.enterStrCLMin);
-        sclm.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        sclm = (EditText) getActivity().findViewById(R.id.enterStrCLMin);
+        sclm.setOnFocusChangeListener(this);
+        sclnt = (EditText) getActivity().findViewById(R.id.enterStrCarLenNT);
+        sclnt.setOnFocusChangeListener(this);
+        scw = (EditText) getActivity().findViewById(R.id.enterStrCarWid);
+        scw.setOnFocusChangeListener(this);
+        cclm = (EditText) getActivity().findViewById(R.id.enterCurCarMin);
+        cclm.setOnFocusChangeListener(this);
+        cclnt = (EditText) getActivity().findViewById(R.id.enterCurCarNT);
+        cclnt.setOnFocusChangeListener(this);
+        ccw = (EditText) getActivity().findViewById(R.id.enterCurCarWid);
+        ccw.setOnFocusChangeListener(this);
 
+        ccw.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-    /* When focus is lost check that the text field
-    * has valid values.
-    */
-                if (!hasFocus) {
-                    //save input
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_NEXT) {
+                    //switch to new activity
 
-                    Double data = TryParseDouble(((EditText) v).getText().toString());
-                    if (data != null) {
-                        Log.d("saved data", data.toString());
-                        strCLmin = data;
-                        Log.d("saving field", "straight carapace length minimum");
-                    }
                 }
-            }
-        });
-        sclnt = (EditText)getActivity().findViewById(R.id.enterStrCarLenNT);
-        sclnt.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-    /* When focus is lost check that the text field
-    * has valid values.
-    */
-                if (!hasFocus) {
-                    //save input
-                    Double data = TryParseDouble(((EditText) v).getText().toString());
-                    if (data != null) {
-                        Log.d("saved data", data.toString());
-                        strCLnt = data;
-                        Log.d("saving field", "straight carapace notch-tip");
-                    }
-                }
-            }
-        });
-        scw = (EditText)getActivity().findViewById(R.id.enterStrCarWid);
-        scw.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-    /* When focus is lost check that the text field
-    * has valid values.
-    */
-                if (!hasFocus) {
-                    //save input
-                    Double data = TryParseDouble(((EditText) v).getText().toString());
-                    if (data != null) {
-                        Log.d("saved data", data.toString());
-                        strCW = data;
-                        Log.d("saving field", "straight carapace width");
-                    }
-                }
-            }
-        });
-        cclm = (EditText)getActivity().findViewById(R.id.enterCurCarMin);
-        cclm.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-    /* When focus is lost check that the text field
-    * has valid values.
-    */
-                if (!hasFocus) {
-                    //save input
-                    Double data = TryParseDouble(((EditText) v).getText().toString());
-                    if (data != null) {
-                        Log.d("saved data", data.toString());
-                        curCLmin = data;
-                        Log.d("saving field", "curved carapace length minimum");
-                    }
-                }
-            }
-        });
-        cclnt = (EditText)getActivity().findViewById(R.id.enterCurCarNT);
-        cclnt.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-    /* When focus is lost check that the text field
-    * has valid values.
-    */
-                if (!hasFocus) {
-                    //save input
-                    Double data = TryParseDouble(((EditText) v).getText().toString());
-                    if (data != null) {
-                        Log.d("saved data", data.toString());
-                        curCLnt = data;
-                        Log.d("saving field", "curved carapace length notch-tip");
-                    }
-                }
-            }
-        });
-        ccw = (EditText)getActivity().findViewById(R.id.enterCurCarWid);
-        ccw.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-    /* When focus is lost check that the text field
-    * has valid values.
-    */
-                if (!hasFocus) {
-                    //save input
-                    Double data = TryParseDouble(((EditText) v).getText().toString());
-                    if (data != null) {
-                        Log.d("saved data", data.toString());
-                        curCW = data;
-                        Log.d("saving field", "curved carapace width");
-                    }
-                }
+                return true;
             }
         });
     }
+
+//    @Override
+//    public void onStart() {
+//        super.onStart();
+//        sclm = (EditText)getActivity().findViewById(R.id.enterStrCLMin);
+//        sclm.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+//
+//            @Override
+//            public void onFocusChange(View v, boolean hasFocus) {
+//    /* When focus is lost check that the text field
+//    * has valid values.
+//    */
+//                if (!hasFocus) {
+//                    //save input
+//
+//                    Double data = TryParseDouble(((EditText) v).getText().toString());
+//                    if (data != null) {
+//                        Log.d("saved data", data.toString());
+//                        strCLmin = data;
+//                        Log.d("saving field", "straight carapace length minimum");
+//                    }
+//                }
+//            }
+//        });
+//        sclnt = (EditText)getActivity().findViewById(R.id.enterStrCarLenNT);
+//        sclnt.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+//
+//            @Override
+//            public void onFocusChange(View v, boolean hasFocus) {
+//    /* When focus is lost check that the text field
+//    * has valid values.
+//    */
+//                if (!hasFocus) {
+//                    //save input
+//                    Double data = TryParseDouble(((EditText) v).getText().toString());
+//                    if (data != null) {
+//                        Log.d("saved data", data.toString());
+//                        strCLnt = data;
+//                        Log.d("saving field", "straight carapace notch-tip");
+//                    }
+//                }
+//            }
+//        });
+//        scw = (EditText)getActivity().findViewById(R.id.enterStrCarWid);
+//        scw.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+//            @Override
+//            public void onFocusChange(View v, boolean hasFocus) {
+//    /* When focus is lost check that the text field
+//    * has valid values.
+//    */
+//                if (!hasFocus) {
+//                    //save input
+//                    Double data = TryParseDouble(((EditText) v).getText().toString());
+//                    if (data != null) {
+//                        Log.d("saved data", data.toString());
+//                        strCW = data;
+//                        Log.d("saving field", "straight carapace width");
+//                    }
+//                }
+//            }
+//        });
+//        cclm = (EditText)getActivity().findViewById(R.id.enterCurCarMin);
+//        cclm.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+//            @Override
+//            public void onFocusChange(View v, boolean hasFocus) {
+//    /* When focus is lost check that the text field
+//    * has valid values.
+//    */
+//                if (!hasFocus) {
+//                    //save input
+//                    Double data = TryParseDouble(((EditText) v).getText().toString());
+//                    if (data != null) {
+//                        Log.d("saved data", data.toString());
+//                        curCLmin = data;
+//                        Log.d("saving field", "curved carapace length minimum");
+//                    }
+//                }
+//            }
+//        });
+//        cclnt = (EditText)getActivity().findViewById(R.id.enterCurCarNT);
+//        cclnt.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+//            @Override
+//            public void onFocusChange(View v, boolean hasFocus) {
+//    /* When focus is lost check that the text field
+//    * has valid values.
+//    */
+//                if (!hasFocus) {
+//                    //save input
+//                    Double data = TryParseDouble(((EditText) v).getText().toString());
+//                    if (data != null) {
+//                        Log.d("saved data", data.toString());
+//                        curCLnt = data;
+//                        Log.d("saving field", "curved carapace length notch-tip");
+//                    }
+//                }
+//            }
+//        });
+//        ccw = (EditText)getActivity().findViewById(R.id.enterCurCarWid);
+//        ccw.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+//            @Override
+//            public void onFocusChange(View v, boolean hasFocus) {
+//    /* When focus is lost check that the text field
+//    * has valid values.
+//    */
+//                if (!hasFocus) {
+//                    //save input
+//                    Double data = TryParseDouble(((EditText) v).getText().toString());
+//                    if (data != null) {
+//                        Log.d("saved data", data.toString());
+//                        curCW = data;
+//                        Log.d("saving field", "curved carapace width");
+//                    }
+//                }
+//            }
+//        });
+//    }
 
     @Override
     public void onDetach() {
@@ -235,12 +340,25 @@ public class CarapaceData extends Fragment implements View.OnClickListener {
     }
 
     public void saveCarapace(View v) {
+        parseField(getActivity().findViewById(R.id.enterStrCLMin));
+        parseField(getActivity().findViewById(R.id.enterStrCarLenNT));
+        parseField(getActivity().findViewById(R.id.enterStrCarWid));
+        parseField(getActivity().findViewById(R.id.enterCurCarMin));
+        parseField(getActivity().findViewById(R.id.enterCurCarNT));
+        parseField(getActivity().findViewById(R.id.enterCurCarWid));
+
+
         if(strCLmin != 0 && strCLnt != 0 && strCW != 0 && curCLmin != 0 && curCLnt != 0 && curCW != 0) {
             FragmentCommunicator fc = (FragmentCommunicator)getActivity();
             fc.setCarapaceData(strCLmin, strCLnt, strCW, curCLmin, curCLnt, curCW);
         }
         else {
             //notify user
+            CharSequence text = "We have a problem!";
+            int duration = Toast.LENGTH_SHORT;
+
+            Toast toast = Toast.makeText(getActivity(), text, duration);
+            toast.show();
         }
     }
 
