@@ -113,7 +113,7 @@ public class CaptureData extends Fragment implements View.OnClickListener, View.
                 String data = (((EditText) v).getText().toString());
                 if (data != null) {
                     Log.d("saved data", data.toString());
-                    location = data;
+                    date = data;
                     Log.d("saving field", "head width");
                 }
             }
@@ -150,64 +150,6 @@ public class CaptureData extends Fragment implements View.OnClickListener, View.
         });
     }
 
-//    @Override
-//    public void onStart() {
-//        // set all focus change listeners to "this"
-//        // hd = (EditText) getActivity().finddViewById(R.id.enterHeadDepth;
-//        // hd.setOnFocusChangeListener(this);
-//        super.onStart();
-//        cn = (EditText)getActivity().findViewById(R.id.captureNumber);
-//        cn.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-//
-//            @Override
-//            public void onFocusChange(View v, boolean hasFocus) {
-//    /* When focus is lost check that the text field
-//    * has valid values.
-//    */
-//                if (!hasFocus) {
-//                    //save input
-//                    Integer data = TryParseInt(((EditText) v).getText().toString());
-//                    if (data != null) {
-//                        Log.d("saved data", data.toString());
-//                        captureNum = data;
-//                        Log.d("saving field", "capture number");
-//                    }
-//                }
-//            }
-//        });
-//        lc = (EditText)getActivity().findViewById(R.id.enterLocation);
-//        lc.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-//
-//            @Override
-//            public void onFocusChange(View v, boolean hasFocus) {
-//    /* When focus is lost check that the text field
-//    * has valid values.
-//    */
-//                if (!hasFocus) {
-//                    //save input
-//                    location = ((EditText)v).getText().toString();
-//                    Log.d("saving field", "location");
-//
-//                }
-//            }
-//        });
-//
-//        dt = (EditText)getActivity().findViewById(R.id.enterDate);
-//        dt.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-//
-//            @Override
-//            public void onFocusChange(View v, boolean hasFocus) {
-//    /* When focus is lost check that the text field
-//    * has valid values.
-//    */
-//                if (!hasFocus) {
-//                    //save input
-//                    date = ((EditText)v).getText().toString();
-//                    Log.d("saving field", "date");
-//                }
-//            }
-//        });
-//    }
 
     @Override
     public void onAttach(Context context) {

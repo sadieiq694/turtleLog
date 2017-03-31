@@ -178,109 +178,6 @@ public class OtherData extends Fragment implements View.OnClickListener, View.On
     }
 
 
-
-//    @Override
-//    public void onStart() {
-//        super.onStart();
-//        hd = (EditText) getActivity().findViewById(R.id.enterHeadDepth);
-//        hd.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-//
-//            @Override
-//            public void onFocusChange(View v, boolean hasFocus) {
-//    /* When focus is lost check that the text field
-//    * has valid values.
-//    */
-//                if (!hasFocus) {
-//                    //save input
-//                    Double data = TryParseDouble(((EditText) v).getText().toString());
-//                    if (data != null) {
-//                        headDep = data;
-//                        Log.d("saved head depth", data.toString());
-//                        Log.d("saving field", "head depth");
-//                    }
-//                }
-//            }
-//        });
-//        hl = (EditText) getActivity().findViewById(R.id.enterHeadLength);
-//        hl.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-//
-//            @Override
-//            public void onFocusChange(View v, boolean hasFocus) {
-//    /* When focus is lost check that the text field
-//    * has valid values.
-//    */
-//                if (!hasFocus) {
-//                    //save input
-//                    Double data = TryParseDouble((((EditText) v).getText().toString()));
-//                    if (data != null) {
-//                        Log.d("saved data", data.toString());
-//                        headLen = data;
-//                        Log.d("saving field", "head length");
-//                    }
-//                }
-//            }
-//        });
-//        hw = (EditText) getActivity().findViewById(R.id.enterHeadWidth);
-//        hw.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-//
-//            @Override
-//            public void onFocusChange(View v, boolean hasFocus) {
-//    /* When focus is lost check that the text field
-//    * has valid values.
-//    */
-//                if (!hasFocus) {
-//                    //save input
-//                    Double data = TryParseDouble((((EditText) v).getText().toString()));
-//                    if (data != null) {
-//                        Log.d("saved data", data.toString());
-//                        headWid = data;
-//                        Log.d("saving field", "head width");
-//                    }
-//                }
-//            }
-//        });
-//        bd = (EditText) getActivity().findViewById(R.id.enterBodyDepth);
-//        bd.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-//
-//            @Override
-//            public void onFocusChange(View v, boolean hasFocus) {
-//    /* When focus is lost check that the text field
-//    * has valid values.
-//    */
-//                if (!hasFocus) {
-//                    //save input
-//                    Double data = TryParseDouble((((EditText) v).getText().toString()));
-//                    if (data != null) {
-//                        Log.d("saved data", data.toString());
-//                        bodyDep = data;
-//                    }
-//                    Log.d("saving field", "head width");
-//                }
-//            }
-//        });
-//        bd.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-//            @Override
-//            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-//                if (actionId == EditorInfo.IME_ACTION_NEXT) {
-//                    //switch to new activity
-//
-//                }
-//                return true;
-//            }
-//        });
-//    }
-
-    /*@Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }*/
-
     @Override
     public void onDetach() {
         super.onDetach();
@@ -290,9 +187,9 @@ public class OtherData extends Fragment implements View.OnClickListener, View.On
     public void saveOther(View v) {
 
         parseField(getActivity().findViewById(R.id.enterHeadDepth));
-        parseField(getActivity().findViewById(R.id.enterHeadDepth));
-        parseField(getActivity().findViewById(R.id.enterHeadDepth));
-        parseField(getActivity().findViewById(R.id.enterHeadDepth));
+        parseField(getActivity().findViewById(R.id.enterHeadLength));
+        parseField(getActivity().findViewById(R.id.enterHeadWidth));
+        parseField(getActivity().findViewById(R.id.enterBodyDepth));
 
         if(headDep != 0 && headWid != 0 && headLen != 0 && bodyDep != 0) {
             com.example.sadiela.app1.FragmentCommunicator fc = (com.example.sadiela.app1.FragmentCommunicator)getActivity();
