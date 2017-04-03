@@ -122,7 +122,7 @@ public class CarapaceData extends Fragment implements View.OnClickListener, View
                 if (data != null) {
                     strCLmin = data;
                     Log.d("saved head depth", data.toString());
-                    Log.d("saving field", "head depth");
+                    Log.d("saving field", "straight carapace length min");
                 }
             }
             break;
@@ -131,7 +131,7 @@ public class CarapaceData extends Fragment implements View.OnClickListener, View
                 if (data != null) {
                     Log.d("saved data", data.toString());
                     strCLnt = data;
-                    Log.d("saving field", "head length");
+                    Log.d("saving field", "straight carapace length notch to tip");
                 }
             }
             break;
@@ -141,7 +141,7 @@ public class CarapaceData extends Fragment implements View.OnClickListener, View
                 if (data != null) {
                     Log.d("saved data", data.toString());
                     strCW = data;
-                    Log.d("saving field", "head width");
+                    Log.d("saving field", "straight carapace width");
                 }
             }
             break;
@@ -153,7 +153,7 @@ public class CarapaceData extends Fragment implements View.OnClickListener, View
                     Log.d("saved data", data.toString());
                     curCLmin = data;
                 }
-                Log.d("saving field", "body depth");
+                Log.d("saving field", "curved carapace length minimum");
             }
             break;
             case R.id.enterCurCarNT:
@@ -164,7 +164,7 @@ public class CarapaceData extends Fragment implements View.OnClickListener, View
                     Log.d("saved data", data.toString());
                     curCLnt = data;
                 }
-                Log.d("saving field", "body depth");
+                Log.d("saving field", "curved carapace length notch to tip");
             }
             break;
             case R.id.enterCurCarWid:
@@ -175,7 +175,7 @@ public class CarapaceData extends Fragment implements View.OnClickListener, View
                     Log.d("saved data", data.toString());
                     curCW = data;
                 }
-                Log.d("saving field", "body depth");
+                Log.d("saving field", "curved carapace width");
             }
         }
     }

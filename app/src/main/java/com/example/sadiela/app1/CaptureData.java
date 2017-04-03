@@ -95,7 +95,7 @@ public class CaptureData extends Fragment implements View.OnClickListener, View.
                 if (data != null) {
                     captureNum = data;
                     Log.d("saved head depth", data.toString());
-                    Log.d("saving field", "head depth");
+                    Log.d("saving field", "capture number");
                 }
             }
             break;
@@ -104,7 +104,7 @@ public class CaptureData extends Fragment implements View.OnClickListener, View.
                 if (data != null) {
                     Log.d("saved data", data.toString());
                     location = data;
-                    Log.d("saving field", "head length");
+                    Log.d("saving field", "location");
                 }
             }
             break;
@@ -114,7 +114,7 @@ public class CaptureData extends Fragment implements View.OnClickListener, View.
                 if (data != null) {
                     Log.d("saved data", data.toString());
                     date = data;
-                    Log.d("saving field", "head width");
+                    Log.d("saving field", "date");
                 }
             }
         }

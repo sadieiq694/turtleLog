@@ -29,6 +29,8 @@ import android.widget.TextView;
 
 public class LogNewData extends AppCompatActivity implements FragmentCommunicator {
 
+    DatabaseTable dt = new DatabaseTable(this);
+
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
@@ -58,11 +60,12 @@ public class LogNewData extends AppCompatActivity implements FragmentCommunicato
         c.headW = headWid;
         c.headL = headLen;
         c.bodyD = bodyDep;
+        dt.insert(c);
+        dt.dump();
         startActivity(new Intent(this, MainActivity.class));
     }
 
 
-    //private Turtle t = new Turtle();
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -122,15 +125,7 @@ public class LogNewData extends AppCompatActivity implements FragmentCommunicato
         return super.onOptionsItemSelected(item);
     }
 
-    //@Override
-    //public void onFragmentInteraction(Uri uri) {
-    //}
 
-
-    /**
-     * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
-     * one of the sections/tabs/pages.
-     */
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
         public SectionsPagerAdapter(FragmentManager fm) {
@@ -173,6 +168,7 @@ public class LogNewData extends AppCompatActivity implements FragmentCommunicato
             }
             return null;
         }
+
 
 
         /*public void enterData(View v) {
