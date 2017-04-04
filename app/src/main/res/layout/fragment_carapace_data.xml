@@ -10,7 +10,7 @@
         android:layout_width="264dp"
         android:layout_height="wrap_content"
         android:id="@+id/enterStrCLMin"
-        android:inputType="number"
+        android:inputType="numberDecimal"
         android:imeOptions="actionNext"
         android:hint="Straight Carapace Length Min"
         android:background="#b1d1ff"
@@ -24,7 +24,7 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="number"
+        android:inputType="numberDecimal"
         android:ems="10"
         android:imeOptions="actionNext"
         android:id="@+id/enterStrCarLenNT"
@@ -39,7 +39,7 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="number"
+        android:inputType="numberDecimal"
         android:ems="10"
         android:imeOptions="actionNext"
         android:id="@+id/enterStrCarWid"
@@ -54,7 +54,7 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="number"
+        android:inputType="numberDecimal"
         android:ems="10"
         android:imeOptions="actionNext"
         android:id="@+id/enterCurCarMin"
@@ -68,7 +68,7 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="number"
+        android:inputType="numberDecimal"
         android:ems="10"
         android:imeOptions="actionNext"
         android:id="@+id/enterCurCarNT"
@@ -83,8 +83,9 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="number"
+        android:inputType="numberDecimal"
         android:ems="10"
+        android:imeOptions="actionDone"
         android:id="@+id/enterCurCarWid"
         android:hint="Curved Carapace Width"
         android:background="#b1d1ff"

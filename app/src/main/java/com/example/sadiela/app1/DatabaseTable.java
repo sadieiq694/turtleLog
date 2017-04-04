@@ -26,9 +26,10 @@ public class DatabaseTable {
     public static final String H_L = "HEAD_LENGTH";
     public static final String H_W = "HEAD_WIDTH";
     public static final String B_D = "BODY_DEPTH";
+    public static final String P_KEY = "PRIMARY_KEY";
 
     private static final String DATABASE_NAME = "CAPTURES";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     public final DatabaseOpenHelper database_open_helper;
 
@@ -43,7 +44,7 @@ public class DatabaseTable {
 
         public static final String SQL_CREATE_ENTRIES =
                 "CREATE TABLE " + DATABASE_NAME +
-                        " (" + CAPT_DATE + " TEXT,"
+                        " (" + CAPT_DATE + " TEXT," + P_KEY + " INTEGER, "
                         + CAPT_LOC + " TEXT, " +
                         CAPT_NUM + " INTEGER, " + STR_CL_MIN + " REAL, "
                         + STR_CL_NT + " REAL, " + STR_CW + " REAL, " + CUR_CL_MIN
@@ -80,7 +81,7 @@ public class DatabaseTable {
         ContentValues values = new ContentValues();
         values.put(CAPT_DATE, capture.date);
         values.put(CAPT_LOC, capture.location);
-        values.put(CAPT_NUM, capture.captureID);
+        values.put(CAPT_NUM, capture.catchNum);
         values.put(STR_CL_MIN, capture.strCLMin);
         values.put(STR_CL_NT, capture.strCLnt);
         values.put(STR_CW, capture.strCW);
@@ -143,7 +144,9 @@ public class DatabaseTable {
 
         cursor.moveToFirst();
         while(cursor.isAfterLast() == false) {
-            Log.d("data row", String.valueOf(cursor.getInt(1)));
+            for(int i = 0; i < 13; i++) {
+                Log.d("data column", String.valueOf(cursor.getInt(i)));
+            }
             cursor.moveToNext();
         }
 

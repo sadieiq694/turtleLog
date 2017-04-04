@@ -8,7 +8,6 @@ import java.util.List;
  * Created by sadie.la on 1/30/2017.
  */
 public class Capture {
-    String captureID; //researchers will not have to fill this in
     String date; // " "
     List<String> tags = new ArrayList<String>();
     int catchNum;
@@ -22,7 +21,7 @@ public class Capture {
     double curCLMin;
     double curCLnt;
     double curCW;
-    double weight;
+    double weight; // ahgheufehiuh
     double bodyD;
 
 }
